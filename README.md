@@ -1,4 +1,4 @@
-# erfindergeist-security
+# erfindergeist-door-status
 
 Wordpress plugin
 
