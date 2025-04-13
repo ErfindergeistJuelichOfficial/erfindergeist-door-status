@@ -23,10 +23,23 @@ require_once 'apis.php';
 require_once 'styles.php';
 
 function egj_door_status_settings_page() {
-  if( isset($_POST[ $_SESSION['egj_door_status_hidden_field_input_name'] ]) && $_POST[ $_SESSION['egj_door_status_hidden_field_input_name'] ] == 'Y' ) {
+  $hash = get_option( $_SESSION['egj_door_status_value_hidden'] );
+  if( empty($hash) ) {
+    $hash = bin2hex(random_bytes(16));
+    update_option( $_SESSION['egj_door_status_value_hidden'], $hash );
+  }
+  
+
+
+
+  if( isset($_POST[ $_SESSION['egj_door_status_hidden_field_input_name'] ]) && $_POST[ $_SESSION['egj_door_status_hidden_field_input_name'] ] === $hash ) {
     $token_val = $_POST[ $_SESSION['egj_door_status_token_input_name'] ];
+    $token_val_2 = $_POST[ $_SESSION['egj_door_status_token_input_name_2'] ];
+    $token_val_3 = $_POST[ $_SESSION['egj_door_status_token_input_name_3'] ];
    
     update_option( $_SESSION['egj_door_status_token_option_name'], $token_val );
+    update_option( $_SESSION['egj_door_status_token_option_name_2'], $token_val_2 );
+    update_option( $_SESSION['egj_door_status_token_option_name_3'], $token_val_3 );
    
     // Put a "settings saved" message on the screen
     ?>
@@ -42,9 +55,11 @@ function egj_door_status_settings_page() {
     <div>
       <h3>Erfindergeist Door Status Settings</h3>
       <form name="form1" method="post" action="">
-        <input type="hidden" name="<?php echo $_SESSION['egj_door_status_hidden_field_input_name']; ?>" value="Y">
+        <input type="hidden" name="<?php echo $_SESSION['egj_door_status_hidden_field_input_name']; ?>" value="<?php esc_attr($hash) ?>">
         <p>Token:</p>
         <input type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name']; ?>" value="<?php echo isset($token) ? esc_attr($token) : ''; ?>">
+        <input type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name_2']; ?>" value="<?php echo isset($token2) ? esc_attr($token2) : ''; ?>">
+        <input type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name_3']; ?>" value="<?php echo isset($token3) ? esc_attr($token3) : ''; ?>">
         <p class="submit">
           <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
         </p>

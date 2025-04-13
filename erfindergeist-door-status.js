@@ -27,7 +27,7 @@
   }
 
   function getData() {
-    $.getJSON( '/wp-json/erfindergeist/v1/door-status')
+    $.getJSON( '/wp-json/erfindergeist/v2/door-status')
       .done(function( json ) {
         render(json);
       })
