@@ -11,23 +11,35 @@
   }
 
   function render(data) {
-    if(data.status) {
-      let html = ""; 
+    if (
+      data &&
+      data.doorState !== undefined &&
+      data.lockState !== undefined &&
+      data.dateTime !== undefined
+    ) {
+      let html = "";
 
-      if(data.status === "open") {
-        html += '<p class="is-style-info">Werkstatt ist offen</p>'
+      if (data.doorState === "open" && data.lockState === "open") {
+        html += '<p class="is-style-info">';
+        html += 'Werkstatt ist offen';
       }
 
-      if(data.status === "close") {        
-        html += '<p class="is-style-error">Werkstatt ist geschlossen</p>'
+      if (data.doorState === "close" && data.lockState === "close") {
+        html += '<p class="is-style-error">';
+        html += "Werkstatt ist geschlossen";
       }
-      
+
+      html +=
+        "Letzte Aktualisierung: " + new Date(data.dateTime).toLocaleString();
+
+      html += '</p>';
+
       $(`#${containerId}`).html(html);
     }
   }
 
   function getData() {
-    $.getJSON( '/wp-json/erfindergeist/v2/door-status')
+    $.getJSON( '/wp-json/erfindergeist/v2/room-status')
       .done(function( json ) {
         render(json);
       })

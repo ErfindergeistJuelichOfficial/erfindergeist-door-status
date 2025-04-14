@@ -2,7 +2,7 @@
   // VARS
   $_SESSION['egj_door_status_namespace'] = 'erfindergeist';
   $_SESSION['egj_door_status_version'] = 'v2';
-  $_SESSION['egj_door_status_route'] = 'door-status';
+  $_SESSION['egj_door_status_route'] = 'room-status';
   $_SESSION['egj_door_status_token_option_name'] = 'egj_door_status_token';
   $_SESSION['egj_door_status_hidden_field_input_name'] = 'egj_door_status_submit_hidden';
   $_SESSION['egj_door_status_hidden_field_value_name'] = 'egj_door_status_value_hidden';

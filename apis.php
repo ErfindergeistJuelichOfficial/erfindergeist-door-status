@@ -20,9 +20,9 @@ class RoomState {
   public State $doorState;
   public State $lockState;
 
-  public AlertState $camPersonState;
-  public AlertState $camAnimalState;
-  public AlertState $camMotionState;
+  public AlertState $camPersonAlertState;
+  public AlertState $camAnimalAlertState;
+  public AlertState $camMotionAlertState;
 
   public AlertState $smokeAlertState;
 
@@ -31,7 +31,7 @@ class RoomState {
   public string $dateTime;
 }
 
-$requiredRoomStateProps = ['doorState', 'lockState', 'camPersonState', 'camAnimalState', 'camMotionState', 'smokeAlertState', 'roomTemp'];
+$requiredRoomStateProps = ['doorState', 'lockState', 'camPersonAlertState', 'camAnimalAlertState', 'camMotionAlertState', 'smokeAlertState', 'roomTemp'];
 
 function validateJsonWithRequiredFields(string $json, array $requiredFields): bool {
   $data = json_decode($json, true);
@@ -52,14 +52,18 @@ function validateJsonWithRequiredFields(string $json, array $requiredFields): bo
 function json_string_to_room_state(string $json_string): RoomState {
   $data = json_decode($json_string, true);
   
+  $now = new DateTime();
+  $dateTime = $now->format(DateTime::ATOM);
+
   $state = new RoomState();
   $state->doorState = $data->doorState;
   $state->lockState = $data->lockState;
-  $state->camPersonState = $data->camPersonState;
-  $state->camAnimalState = $data->camAnimalState;
-  $state->camMotionState = $data->camMotionState;
+  $state->camPersonAlertState = $data->camPersonAlertState;
+  $state->camAnimalAlertState = $data->camAnimalAlertState;
+  $state->camMotionAlertState = $data->camMotionAlertState;
   $state->smokeAlertState = $data->smokeAlertState;
   $state->roomTemp = $data->roomTemp;
+  $state->dateTime = $dateTime;
 
   return $state;
 }
@@ -88,10 +92,6 @@ function egj_door_status_post_api( $data ) {
     }
 
     $state = json_string_to_room_state($jsonData);
-    $now = new DateTime();
-    $dateTime = $now->format(DateTime::ATOM);
-    $state->dateTime = $dateTime;
-
     update_option( $_SESSION['egj_door_status_option_name'], json_encode($state, true) );
 
     $response = new WP_REST_Response();
@@ -148,6 +148,5 @@ add_action('rest_api_init', function () {
     'methods'  => 'POST',
     'callback' => 'egj_door_status_post_api',
     'permission_callback' => '__return_true'
-    
   ));
 });
