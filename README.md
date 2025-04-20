@@ -15,3 +15,4 @@ Wordpress plugin
 
 recommend:
 - yogensia.searchwpdocs
+- devsense.phptools-vscode
