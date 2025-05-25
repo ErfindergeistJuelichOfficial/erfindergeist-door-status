@@ -61,7 +61,7 @@ function egj_door_status_settings_page() {
     <div>
       <h3>Erfindergeist Door Status Settings</h3>
       <form name="form1" method="post" action="">
-        <input type="hidden" name="<?php echo $_SESSION['egj_door_status_hidden_field_input_name']; ?>" value="<?php esc_attr($hash) ?>">
+        <input type="hidden" name="<?php echo $_SESSION['egj_door_status_hidden_field_input_name']; ?>" value="<?php echo esc_attr($hash) ?>">
 
         <label for="token1">Token 1</label><br>
         <input id="token1" type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name']; ?>" value="<?php echo isset($token) ? esc_attr($token) : ''; ?>"><br>
