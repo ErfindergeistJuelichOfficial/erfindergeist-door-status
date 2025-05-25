@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once 'vars.php';
+require_once ABSPATH . 'wp-includes/rest-api.php';
 
 enum State: string {
   case Open = 'open';
@@ -68,7 +69,8 @@ function json_string_to_room_state(string $json_string): RoomState {
   return $state;
 }
 
-function egj_door_status_post_api( $data ) {
+function egj_door_status_post_api( WP_REST_Request $data){
+  global $requiredRoomStateProps;
   // https://stackoverflow.com/questions/53126137/wordpress-rest-api-custom-endpoint-with-url-parameter
   // $product_ID = $data['id'];
   $token_param = $data->get_param( 'token' );
@@ -86,6 +88,7 @@ function egj_door_status_post_api( $data ) {
 
   if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
     $jsonData = file_get_contents('php://input');
+    // $parameters = $request->get_json_params();
 
     if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
       return new WP_Error('rest_custom_error', 'Invalid JSON', array('status' => 400));
@@ -120,6 +123,7 @@ function egj_door_status_post_api( $data ) {
 }
 
 function egj_door_status_get_api( $data ) {
+  global $requiredRoomStateProps;
   $jsonData = get_option( $_SESSION['egj_door_status_option_name'] );
 
   if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
