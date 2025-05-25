@@ -52,9 +52,12 @@ function egj_door_status_settings_page() {
       <form name="form1" method="post" action="">
         <input type="hidden" name="<?php echo $_SESSION['egj_door_status_hidden_field_input_name']; ?>" value="<?php esc_attr($hash) ?>">
         <p>Token:</p>
-        <input type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name']; ?>" value="<?php echo isset($token) ? esc_attr($token) : ''; ?>">
-        <input type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name_2']; ?>" value="<?php echo isset($token2) ? esc_attr($token2) : ''; ?>">
-        <input type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name_3']; ?>" value="<?php echo isset($token3) ? esc_attr($token3) : ''; ?>">
+        <label for="token1">Token 1</label><br>
+        <input id="token1" type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name']; ?>" value="<?php echo isset($token) ? esc_attr($token) : ''; ?>">
+        <label for="token2">Token 2</label><br>
+        <input id="token2" type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name_2']; ?>" value="<?php echo isset($token2) ? esc_attr($token2) : ''; ?>">
+        <label for="token3">Token 3</label><br>
+        <input id="token3" type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name_3']; ?>" value="<?php echo isset($token3) ? esc_attr($token3) : ''; ?>">
         <p class="submit">
           <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
         </p>
