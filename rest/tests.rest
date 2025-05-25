@@ -2,8 +2,8 @@
 
 ### GET status
 # @name getStatus
-GET https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v2/room-status HTTP/1.1
-Content-Type: "application/json"
+GET https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v2/room-status/ HTTP/1.1
+# Content-Type: "application/json"
 
 # {  
 #   "target": "novalars@novalars.onmicrosoft.com",

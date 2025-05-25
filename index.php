@@ -23,11 +23,7 @@ require_once 'apis.php';
 require_once 'styles.php';
 
 function egj_door_status_settings_page() {
-  $hash = "egj"; // get_option( $_SESSION['egj_door_status_value_hidden'] );
-  // if( empty($hash) ) {
-  //   $hash = bin2hex(random_bytes(16));
-  //   update_option( $_SESSION['egj_door_status_value_hidden'], $hash );
-  // }
+  $hash = "egj"; 
   
   if( isset($_POST[ $_SESSION['egj_door_status_hidden_field_input_name'] ]) && $_POST[ $_SESSION['egj_door_status_hidden_field_input_name'] ] === $hash ) {
     $token_val = $_POST[ $_SESSION['egj_door_status_token_input_name'] ];
@@ -46,6 +42,8 @@ function egj_door_status_settings_page() {
 
   // read tokens from options
   $token = get_option( $_SESSION['egj_door_status_token_option_name'] );
+  $token2 = get_option( $_SESSION['egj_door_status_token_option_name_2'] );
+  $token3 = get_option( $_SESSION['egj_door_status_token_option_name_3'] );
 
   // Form
   ?>
