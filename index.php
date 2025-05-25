@@ -31,7 +31,7 @@ function egj_door_status_settings_page() {
 
     // Check if the user has submitted the form
   // if( isset($_POST[ $_SESSION['egj_door_status_hidden_field_input_name'] ]) && $_POST[ $_SESSION['egj_door_status_hidden_field_input_name'] ] === $hash ) {
-  if ( empty($_POST) || !wp_verify_nonce($_POST['egj_door_status_field'],'egj_door_status_action') ) {
+  if ( !empty($_POST) || wp_verify_nonce($_POST['egj_door_status_field'],'egj_door_status_action') ) {
     $token_val_1 = $_POST[ $_SESSION['egj_door_status_token_input_name'] ];
     $token_val_2 = $_POST[ $_SESSION['egj_door_status_token_input_name_2'] ];
     $token_val_3 = $_POST[ $_SESSION['egj_door_status_token_input_name_3'] ];
