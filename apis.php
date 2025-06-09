@@ -87,12 +87,12 @@ function egj_door_status_post_api( WP_REST_Request $request){
   }
 
   // if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
-  // $jsonData = file_get_contents('php://input');
+  $jsonString = file_get_contents('php://input');
   $jsonData = $request->get_json_params();
 
   // $state = json_string_to_room_state($jsonData);
 
-  $response = new WP_REST_Response($jsonData);
+  $response = new WP_REST_Response($jsonString);
   $response->set_status(200);
 
   return $response;
