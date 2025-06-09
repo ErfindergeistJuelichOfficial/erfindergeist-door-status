@@ -34,20 +34,17 @@ class RoomState {
 
 $requiredRoomStateProps = ['doorState', 'lockState', 'camPersonAlertState', 'camAnimalAlertState', 'camMotionAlertState', 'smokeAlertState', 'roomTemp'];
 
-function validateJsonWithRequiredFields(string $json, array $requiredFields): bool {
-  $data = json_decode($json, true);
+function validateJsonWithRequiredFields(array $data, array $requiredFields): bool {
 
-  if (json_last_error() !== JSON_ERROR_NONE) {
-    return false; // Ungültiges JSON
-  }
-
+  $check = true;
+  // Überprüfen, ob alle erforderlichen Felder im JSON-Objekt vorhanden sind
   foreach ($requiredFields as $field) {
     if (!array_key_exists($field, $data)) {
-        return false; // Feld fehlt
+        $check = false; 
     }
   }
 
-  return true;
+  return $check;
 }
 
 function json_string_to_room_state(string $json_string): RoomState {
@@ -92,13 +89,12 @@ function egj_door_status_post_api( WP_REST_Request $request){
   // $body = $request->get_body();
 
   $data = json_decode(file_get_contents('php://input'), true);
-
   $data['dateTime'] = (new DateTime())->format(DateTime::ATOM);
 
 
-  // if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
-  //   return new WP_Error('rest_custom_error', 'Invalid JSON', array('status' => 400));
-  // }
+  if(validateJsonWithRequiredFields($data, $requiredRoomStateProps) === false) {
+     return new WP_Error('rest_custom_error', 'Invalid JSON', array('status' => 400));
+  }
 
   // $state = json_string_to_room_state($jsonData);
     // $jsonString = json_encode($jsonData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
