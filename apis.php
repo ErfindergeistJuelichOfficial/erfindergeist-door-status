@@ -86,24 +86,19 @@ function egj_door_status_post_api( WP_REST_Request $request){
   if($token !== $token_read || $token2 !== $token_read2 || $token3 !== $token_read3) {
     return new WP_Error();
   }
-  else {
-    $response = new WP_REST_Response("huhu");
+
+  $jsonString = file_get_contents('php://input');
+  $jsonData = $request->get_json_params();
+
+  if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
+    return new WP_Error('rest_custom_error', 'Invalid JSON', array('status' => 400));
+  }
+
+  // $state = json_string_to_room_state($jsonData);
+    $response = new WP_REST_Response($jsonData);
     $response->set_status(200);
 
     return $response;
-  }
-
-
-  // if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
-  // $jsonString = file_get_contents('php://input');
-  // $jsonData = $request->get_json_params();
-
-  // if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
-  //   return new WP_Error('rest_custom_error', 'Invalid JSON', array('status' => 400));
-  // }
-
-  // $state = json_string_to_room_state($jsonData);
-
 
 
 
