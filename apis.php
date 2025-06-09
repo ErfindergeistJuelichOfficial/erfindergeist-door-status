@@ -90,7 +90,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
   // $jsonString = file_get_contents('php://input');
   // $jsonData = $request->get_json_params();
   // $body = $request->get_body();
-  
+
   $data = json_decode(file_get_contents('php://input'), true);
 
   $data['dateTime'] = (new DateTime())->format(DateTime::ATOM);
@@ -146,11 +146,11 @@ function egj_door_status_get_api( $data ) {
   global $requiredRoomStateProps;
   $jsonData = get_option( $_SESSION['egj_door_status_option_name'] );
 
-  if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
-    return new WP_Error('rest_custom_error', 'Invalid JSON in Options', array('status' => 400));
-  }
+  // if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
+  //   return new WP_Error('rest_custom_error', 'Invalid JSON in Options', array('status' => 400));
+  // }
 
-  $response = new WP_REST_Response(json_decode($jsonData, true));
+  $response = new WP_REST_Response($jsonData);
   $response->set_status(200);
 
   return $response;
