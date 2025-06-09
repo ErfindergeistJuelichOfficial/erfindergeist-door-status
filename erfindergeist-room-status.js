@@ -19,12 +19,12 @@
     ) {
       let html = "";
 
-      if (data.doorState === "open" && data.lockState === "open") {
+      if (data.lockState === "open") {
         html += '<p class="is-style-info">';
         html += 'Werkstatt ist offen';
       }
 
-      if (data.doorState === "close" && data.lockState === "close") {
+      if (data.lockState === "close") {
         html += '<p class="is-style-error">';
         html += "Werkstatt ist geschlossen";
       }
