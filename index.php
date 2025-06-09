@@ -52,7 +52,7 @@ function egj_door_status_settings_page() {
     $token_val_3 = get_option( $_SESSION['egj_door_status_token_option_name_3'] );
   }
 
-  $jsonData = get_option( $_SESSION['egj_door_status_option_name'] );
+  $jsonData = json_encode(get_option( $_SESSION['egj_door_status_option_name'] ));
 
   // Form
   ?>
