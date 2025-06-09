@@ -92,6 +92,9 @@ function egj_door_status_post_api( WP_REST_Request $request){
   $body = $request->get_body();
   $data = json_decode(file_get_contents('php://input'), true);
 
+  $data['dateTime'] = (new DateTime())->format(DateTime::ATOM);
+
+
   // if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
   //   return new WP_Error('rest_custom_error', 'Invalid JSON', array('status' => 400));
   // }
