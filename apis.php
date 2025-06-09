@@ -87,20 +87,27 @@ function egj_door_status_post_api( WP_REST_Request $data){
   }
 
   // if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
-    $jsonData = file_get_contents('php://input');
-    // $parameters = $request->get_json_params();
+  $jsonData = file_get_contents('php://input');
+  // $parameters = $request->get_json_params();
 
-    if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
-      return new WP_Error('rest_custom_error', 'Invalid JSON xx', array('status' => 400));
-    }
 
-    $state = json_string_to_room_state($jsonData);
-    update_option( $_SESSION['egj_door_status_option_name'], json_encode($state, true) );
+  $response = new WP_REST_Response($jsonData);
+  $response->set_status(200);
 
-    $response = new WP_REST_Response();
-    $response->set_status(200);
+  return $response;
+
+
+    // if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
+    //   return new WP_Error('rest_custom_error', 'Invalid JSON xx', array('status' => 400));
+    // }
+
+    // $state = json_string_to_room_state($jsonData);
+    // update_option( $_SESSION['egj_door_status_option_name'], json_encode($state, true) );
+
+    // $response = new WP_REST_Response();
+    // $response->set_status(200);
   
-    return $response;
+    // return $response;
 
   // } else {
   //   // Handle non-JSON requests -> toggle doorState
