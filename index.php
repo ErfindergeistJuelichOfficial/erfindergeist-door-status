@@ -52,6 +52,8 @@ function egj_door_status_settings_page() {
     $token_val_3 = get_option( $_SESSION['egj_door_status_token_option_name_3'] );
   }
 
+  $jsonData = get_option( $_SESSION['egj_door_status_option_name'] );
+
   // Form
   ?>
     <div>
@@ -66,6 +68,8 @@ function egj_door_status_settings_page() {
         <input id="token2" type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name_2']; ?>" value="<?php echo isset($token_val_2) ? esc_attr($token_val_2) : ''; ?>"><br>
         <label for="token3">Token 3</label><br>
         <input id="token3" type="text" name="<?php echo $_SESSION['egj_door_status_token_input_name_3']; ?>" value="<?php echo isset($token_val_3) ? esc_attr($token_val_3) : ''; ?>"><br>
+        <br>
+        <textarea name="<?php echo $_SESSION['egj_door_status_option_name']; ?>" rows="10" cols="50"><?php echo isset($jsonData) ? esc_textarea($jsonData) : ''; ?></textarea><br>
         <p class="submit">
           <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
         </p>
