@@ -69,17 +69,17 @@ function json_string_to_room_state(string $json_string): RoomState {
   return $state;
 }
 
-function egj_door_status_post_api( WP_REST_Request $data){
+function egj_door_status_post_api( WP_REST_Request $request){
   global $requiredRoomStateProps;
   // https://stackoverflow.com/questions/53126137/wordpress-rest-api-custom-endpoint-with-url-parameter
   // $product_ID = $data['id'];
-  $token_param = $data->get_param( 'token' );
+  $token_param = $request->get_param( 'token' );
   $token_read = get_option( $_SESSION['egj_door_status_token_option_name'] );
 
-  $token_param2 = $data->get_param( 'token2' );
+  $token_param2 = $request->get_param( 'token2' );
   $token_read2 = get_option( $_SESSION['egj_door_status_token_option_name_2'] );
 
-  $token_param3 = $data->get_param( 'token3' );
+  $token_param3 = $request->get_param( 'token3' );
   $token_read3 = get_option( $_SESSION['egj_door_status_token_option_name_3'] );
 
   if($token_param !== $token_read && $token_param2 === $token_read2 && $token_param3 === $token_read3) {
@@ -87,12 +87,12 @@ function egj_door_status_post_api( WP_REST_Request $data){
   }
 
   // if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
-  $jsonData = file_get_contents('php://input');
-  // $parameters = $request->get_json_params();
+  // $jsonData = file_get_contents('php://input');
+  $jsonData = $request->get_json_params();
 
-  $state = json_string_to_room_state($jsonData);
+  // $state = json_string_to_room_state($jsonData);
 
-  $response = new WP_REST_Response($state);
+  $response = new WP_REST_Response($jsonData);
   $response->set_status(200);
 
   return $response;
