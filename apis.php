@@ -96,7 +96,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
 
   // $state = json_string_to_room_state($jsonData);
 
-    update_option( $_SESSION['egj_door_status_option_name'], $jsonData );
+    update_option( $_SESSION['egj_door_status_option_name'], json_encode($jsonData) );
     $response = new WP_REST_Response($jsonData);
     $response->set_status(200);
 
