@@ -21,12 +21,12 @@
 
       if (data.lockState === "open") {
         html += '<p class="is-style-info">';
-        html += 'Werkstatt ist offen';
+        html += 'Werkstatt ist offen<br>';
       }
 
       if (data.lockState === "close") {
         html += '<p class="is-style-error">';
-        html += "Werkstatt ist geschlossen";
+        html += "Werkstatt ist geschlossen<br>";
       }
 
       html +=
