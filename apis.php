@@ -90,8 +90,9 @@ function egj_door_status_post_api( WP_REST_Request $data){
   $jsonData = file_get_contents('php://input');
   // $parameters = $request->get_json_params();
 
+  $state = json_string_to_room_state($jsonData);
 
-  $response = new WP_REST_Response($jsonData);
+  $response = new WP_REST_Response($state);
   $response->set_status(200);
 
   return $response;
