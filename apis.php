@@ -90,6 +90,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
   // $jsonString = file_get_contents('php://input');
   // $jsonData = $request->get_json_params();
   $body = $request->get_body();
+  $data = json_decode(file_get_contents('php://input'), true);
 
   // if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
   //   return new WP_Error('rest_custom_error', 'Invalid JSON', array('status' => 400));
@@ -98,7 +99,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
   // $state = json_string_to_room_state($jsonData);
     // $jsonString = json_encode($jsonData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
     update_option( $_SESSION['egj_door_status_option_name'], $body);
-    $response = new WP_REST_Response($body);
+    $response = new WP_REST_Response($data );
     $response->set_status(200);
 
     return $response;
