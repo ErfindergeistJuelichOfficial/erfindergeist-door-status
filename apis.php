@@ -83,7 +83,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
   $token_read3 = get_option( $_SESSION['egj_door_status_token_option_name_3'] );
 
   if($token_param !== $token_read || $token_param2 !== $token_read2 || $token_param3 !== $token_read3) {
-    return new WP_Error('rest_custom_error', 'Unknown Error', array('status' => 400));
+    return new WP_Error();
   }
 
   // if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
