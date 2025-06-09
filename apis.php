@@ -86,12 +86,12 @@ function egj_door_status_post_api( WP_REST_Request $data){
     return new WP_Error('rest_custom_error', 'Unknown Error', array('status' => 400));
   }
 
-  if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
+  // if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
     $jsonData = file_get_contents('php://input');
     // $parameters = $request->get_json_params();
 
     if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
-      return new WP_Error('rest_custom_error', 'Invalid JSON', array('status' => 400));
+      return new WP_Error('rest_custom_error', 'Invalid JSON xx', array('status' => 400));
     }
 
     $state = json_string_to_room_state($jsonData);
@@ -102,24 +102,24 @@ function egj_door_status_post_api( WP_REST_Request $data){
   
     return $response;
 
-  } else {
-    // Handle non-JSON requests -> toggle doorState
-    $jsonData = get_option( $_SESSION['egj_door_status_option_name'] );
+  // } else {
+  //   // Handle non-JSON requests -> toggle doorState
+  //   $jsonData = get_option( $_SESSION['egj_door_status_option_name'] );
 
-    if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
-      return new WP_Error('rest_custom_error', 'Invalid JSON in Options', array('status' => 400));
-    }
+  //   if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
+  //     return new WP_Error('rest_custom_error', 'Invalid JSON in Options', array('status' => 400));
+  //   }
 
-    $state = json_string_to_room_state($jsonData);
-    $state->doorState = !$state->doorState;
+  //   $state = json_string_to_room_state($jsonData);
+  //   $state->doorState = !$state->doorState;
 
-    update_option( $_SESSION['egj_door_status_option_name'], json_encode($state, true) );
+  //   update_option( $_SESSION['egj_door_status_option_name'], json_encode($state, true) );
 
-    $response = new WP_REST_Response(json_decode($jsonData, true));
-    $response->set_status(200);
+  //   $response = new WP_REST_Response(json_decode($jsonData, true));
+  //   $response->set_status(200);
 
-    return $response;
-  }
+  //   return $response;
+  // }
 }
 
 function egj_door_status_get_api( $data ) {
