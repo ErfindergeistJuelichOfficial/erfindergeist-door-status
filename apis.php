@@ -73,33 +73,38 @@ function egj_door_status_post_api( WP_REST_Request $request){
   global $requiredRoomStateProps;
   // https://stackoverflow.com/questions/53126137/wordpress-rest-api-custom-endpoint-with-url-parameter
   // $product_ID = $data['id'];
-  $token_param = $request->get_param( 'token' );
+  $token = $request->get_param( 'token' );
   $token_read = get_option( $_SESSION['egj_door_status_token_option_name'] );
 
-  $token_param2 = $request->get_param( 'token2' );
+  $token2 = $request->get_param( 'token2' );
   $token_read2 = get_option( $_SESSION['egj_door_status_token_option_name_2'] );
 
-  $token_param3 = $request->get_param( 'token3' );
+  $token3 = $request->get_param( 'token3' );
   $token_read3 = get_option( $_SESSION['egj_door_status_token_option_name_3'] );
 
-  if($token_param !== $token_read || $token_param2 !== $token_read2 || $token_param3 !== $token_read3) {
+  // Check if the tokens match 
+  if($token !== $token_read || $token2 !== $token_read2 || $token3 !== $token_read3) {
     return new WP_Error();
   }
+  else {
+    $response = new WP_REST_Response("huhu");
+    $response->set_status(200);
+
+    return $response;
+  }
+
 
   // if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
-  $jsonString = file_get_contents('php://input');
-  $jsonData = $request->get_json_params();
+  // $jsonString = file_get_contents('php://input');
+  // $jsonData = $request->get_json_params();
 
-  if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
-    return new WP_Error('rest_custom_error', 'Invalid JSON', array('status' => 400));
-  }
+  // if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
+  //   return new WP_Error('rest_custom_error', 'Invalid JSON', array('status' => 400));
+  // }
 
   // $state = json_string_to_room_state($jsonData);
 
-  $response = new WP_REST_Response($jsonString);
-  $response->set_status(200);
 
-  return $response;
 
 
     // if(validateJsonWithRequiredFields($jsonData, $requiredRoomStateProps) === false) {
