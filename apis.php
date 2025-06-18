@@ -32,9 +32,9 @@ function egj_door_status_post_api( WP_REST_Request $request){
   $newData = json_decode(file_get_contents('php://input'), false);
 
   // check newData is a one dimensional object
-  if (!is_array($newData)) {
-    return new WP_Error('invalid_data', 'The data must be a one-dimensional array.', array('status' => 400));
-  }
+  // if (!is_array($newData)) {
+  //   return new WP_Error('invalid_data', 'The data must be a one-dimensional array.', array('status' => 400));
+  // }
 
   // add current timestamp
   // $newData['dateTime'] = (new DateTime())->format(DateTime::ATOM);
