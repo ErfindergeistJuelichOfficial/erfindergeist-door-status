@@ -34,10 +34,14 @@ function egj_room_status_settings_page() {
     $token_val_1 = $_POST[ $_SESSION['egj_room_status_token_input_name_1'] ];
     $token_val_2 = $_POST[ $_SESSION['egj_room_status_token_input_name_2'] ];
     $token_val_3 = $_POST[ $_SESSION['egj_room_status_token_input_name_3'] ];
+
+    $status = $_POST[ $_SESSION['egj_room_status_option_name_1'] ];
    
     update_option( $_SESSION['egj_room_status_token_option_name_1'], $token_val_1 );
     update_option( $_SESSION['egj_room_status_token_option_name_2'], $token_val_2 );
     update_option( $_SESSION['egj_room_status_token_option_name_3'], $token_val_3 );
+
+    update_option( $_SESSION['egj_room_status_option_name_1'], $status );
    
     // Put a "settings saved" message on the screen
     ?>

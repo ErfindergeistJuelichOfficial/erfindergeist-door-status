@@ -25,7 +25,7 @@ POST https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v2/room-status?t
 Content-Type: "application/json"
 
 {
-  "doorStatex": "open",
+  "doorState": "open",
   "lockState": "close",
   "camPersonAlertState": "no",
   "camAnimalAlertState": "yes",
