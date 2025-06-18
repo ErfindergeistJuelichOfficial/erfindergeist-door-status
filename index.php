@@ -34,7 +34,7 @@ function egj_room_status_settings_page() {
     $token_val_1 = $_POST[ $_SESSION['egj_room_status_token_input_name_1'] ];
     $token_val_2 = $_POST[ $_SESSION['egj_room_status_token_input_name_2'] ];
     $token_val_3 = $_POST[ $_SESSION['egj_room_status_token_input_name_3'] ];
-    $status = json_decode($_POST[ $_SESSION['egj_room_status_option_name_1'] ], true);
+    $status = json_decode($_POST[ $_SESSION['egj_room_status_option_name_1'] ], false);
     
    
     update_option( $_SESSION['egj_room_status_token_option_name_1'], $token_val_1 );
@@ -47,6 +47,12 @@ function egj_room_status_settings_page() {
     ?>
       <div class="updated"><p><strong><?php _e('settings saved.', 'menu-test' ); ?></strong></p></div>
     <?php
+
+    if(json_last_error_msg() ) {
+      ?>
+        <div class="error"><p><strong><?php _e('Error: ' . json_last_error_msg(), 'menu-test' ); ?></strong></p></div>
+      <?php
+    }
   }
   else {
     // If the form hasn't been submitted, get the option value

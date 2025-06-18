@@ -29,7 +29,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
 
   $oldData = get_option( $_SESSION['egj_room_status_option_name_1'] );
 
-  $newData = json_decode(file_get_contents('php://input'), true);
+  $newData = json_decode(file_get_contents('php://input'), false);
 
   // check newData is a one dimensional object
   if (!is_array($newData)) {
