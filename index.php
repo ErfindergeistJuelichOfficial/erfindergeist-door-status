@@ -39,7 +39,7 @@ function egj_room_status_settings_page() {
     update_option( $_SESSION['egj_room_status_token_option_name_2'], $token_val_2 );
     update_option( $_SESSION['egj_room_status_token_option_name_3'], $token_val_3 );
 
-    $status = json_decode($_POST[ $_SESSION['egj_room_status_option_name_1'] ], true);
+    $status = json_decode(stripslashes_deep($_POST[ $_SESSION['egj_room_status_option_name_1'] ]), true);
     if(!json_last_error_msg() ) {
       update_option( $_SESSION['egj_room_status_option_name_1'], $status );
     }
