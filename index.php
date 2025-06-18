@@ -86,7 +86,7 @@ function egj_room_status_settings_page() {
         <label for="status">Token 3</label><br>
         <textarea id="status" name="<?php echo $_SESSION['egj_room_status_option_name_1']; ?>" rows="10" cols="50" style="resize: both"><?php echo isset($status) ? esc_textarea($status) : ''; ?></textarea><br>
 
-        <pre><?php echo $_SESSION['egj_room_status_option_name_1']; ?></pre><br>
+        <pre><?php echo $status; ?></pre><br>
         
         <br>
         
