@@ -39,17 +39,21 @@ function egj_room_status_settings_page() {
     update_option( $_SESSION['egj_room_status_token_option_name_2'], $token_val_2 );
     update_option( $_SESSION['egj_room_status_token_option_name_3'], $token_val_3 );
 
-    $status = json_decode(stripslashes_deep($_POST[ $_SESSION['egj_room_status_option_name_1'] ]), true);
-    if(!json_last_error_msg() ) {
-      update_option( $_SESSION['egj_room_status_option_name_1'], $status );
-    }
-   
-    // Put a "settings saved" message on the screen
+  // Put a "settings saved" message on the screen
     ?>
-      <div class="updated"><p><strong><?php _e('settings saved.', 'menu-test' ); ?></strong></p></div>
+      <div class="updated"><p><strong><?php _e('Tokens saved.', 'menu-test' ); ?></strong></p></div>
     <?php
 
-    if(json_last_error_msg() ) {
+
+    $status = json_decode(stripslashes_deep($_POST[ $_SESSION['egj_room_status_option_name_1'] ]), true);
+    if(!json_last_error()) {
+      update_option( $_SESSION['egj_room_status_option_name_1'], $status );
+      ?>
+        <div class="updated"><p><strong><?php _e('Status saved.', 'menu-test' ); ?></strong></p></div>
+      <?php
+    }
+
+    if(json_last_error()) {
       ?>
         <div class="error"><p><strong><?php _e('Status JSON Error: ' . json_last_error_msg(), 'menu-test' ); ?></strong></p>
           <pre>
