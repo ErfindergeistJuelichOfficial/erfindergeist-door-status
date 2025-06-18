@@ -1,5 +1,6 @@
 (function( erfindergeistRoomStatus, $, undefined ) {
-  const containerId = "erfindergeistRoomStatusContainer";
+
+  const openStateContainerId = "erfindergeistRoomStatusContainer"; 
 
   function renderError() {
     const html = `
@@ -10,21 +11,24 @@
     $(`#${containerId}`).html(html);
   }
 
-  function render(data) {
+  function renderOpenState(data) {
+    
+    if(!$(`#${openStateContainerId}`).length) return;
     if (
       data &&
-      data.lockState !== undefined &&
+      data.lockState !== undefined 
     ) {
       let html = "";
 
       if (data.lockState.value === "open") {
         html += '<p class="is-style-info">';
         html += 'Werkstatt ist offen<br>';
-      }
-
-      if (data.lockState.value === "close") {
+      } else if (data.lockState.value === "close") {
         html += '<p class="is-style-error">';
         html += "Werkstatt ist geschlossen<br>";
+      } else {
+        html += '<p class="is-style-error">';
+        html += "Werkstatt unbekannter Zustand<br>";
       }
 
       html +=
@@ -32,8 +36,12 @@
 
       html += '</p>';
 
-      $(`#${containerId}`).html(html);
-    }
+      $(`#${openStateContainerId}`).html(html);
+  }
+
+  function render(data) {
+    renderOpenState(data)
+   
   }
 
   function getData() {
