@@ -13,24 +13,22 @@
   function render(data) {
     if (
       data &&
-      data.doorState !== undefined &&
       data.lockState !== undefined &&
-      data.dateTime !== undefined
     ) {
       let html = "";
 
-      if (data.lockState === "open") {
+      if (data.lockState.value === "open") {
         html += '<p class="is-style-info">';
         html += 'Werkstatt ist offen<br>';
       }
 
-      if (data.lockState === "close") {
+      if (data.lockState.value === "close") {
         html += '<p class="is-style-error">';
         html += "Werkstatt ist geschlossen<br>";
       }
 
       html +=
-        "Letzte Aktualisierung: " + new Date(data.dateTime).toLocaleString();
+        "Letzte Aktualisierung: " + new Date(data.lockState.dateTime).toLocaleString();
 
       html += '</p>';
 
