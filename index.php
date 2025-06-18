@@ -23,18 +23,17 @@ require_once 'apis.php';
 require_once 'styles.php';
 
 function egj_room_status_settings_page() {
-  $hash = "egj"; 
-  
+    
   $token_val_1 = "";
   $token_val_2 = "";
   $token_val_3 = "";
+  $status = "";
 
   // Check if the user has submitted the form
   if ( !empty($_POST) || wp_verify_nonce($_POST['egj_door_status_field'],'egj_door_status_action') ) {
     $token_val_1 = $_POST[ $_SESSION['egj_room_status_token_input_name_1'] ];
     $token_val_2 = $_POST[ $_SESSION['egj_room_status_token_input_name_2'] ];
     $token_val_3 = $_POST[ $_SESSION['egj_room_status_token_input_name_3'] ];
-
     $status = json_decode($_POST[ $_SESSION['egj_room_status_option_name_1'] ], true);
     
    
@@ -54,9 +53,10 @@ function egj_room_status_settings_page() {
     $token_val_1 = get_option( $_SESSION['egj_room_status_token_option_name_1'] );
     $token_val_2 = get_option( $_SESSION['egj_room_status_token_option_name_2'] );
     $token_val_3 = get_option( $_SESSION['egj_room_status_token_option_name_3'] );
+    $status = json_encode(get_option( $_SESSION['egj_room_status_option_name_1'] ),  JSON_PRETTY_PRINT);
   }
 
-  $jsonData = json_encode(get_option( $_SESSION['egj_room_status_option_name_1'] ),  JSON_PRETTY_PRINT);
+
 
   // Form
   ?>
@@ -72,7 +72,7 @@ function egj_room_status_settings_page() {
         <label for="token3">Token 3</label><br>
         <input id="token3" type="text" name="<?php echo $_SESSION['egj_room_status_token_input_name_3']; ?>" value="<?php echo isset($token_val_3) ? esc_attr($token_val_3) : ''; ?>"><br>
         <label for="status">Token 3</label><br>
-        <textarea id="status" name="<?php echo $_SESSION['egj_room_status_option_name_1']; ?>" rows="10" cols="50"><?php echo isset($jsonData) ? esc_textarea($jsonData) : ''; ?></textarea><br>
+        <textarea id="status" name="<?php echo $_SESSION['egj_room_status_option_name_1']; ?>" rows="50" cols="50"><?php echo isset($jsonData) ? esc_textarea($status) : '{}'; ?></textarea><br>
         
         <br>
         
