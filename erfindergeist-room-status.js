@@ -1,5 +1,5 @@
-(function( erfindergeistDoorStatus, $, undefined ) {
-  const containerId = "erfindergeistDoorStatusContainer";
+(function( erfindergeistRoomStatus, $, undefined ) {
+  const containerId = "erfindergeistRoomStatusContainer";
 
   function renderError() {
     const html = `
@@ -50,12 +50,12 @@
       });
   }
 
-  erfindergeistDoorStatus.init = function() {
+  erfindergeistRoomStatus.init = function() {
     getData();
   }
  
-}( window.erfindergeistDoorStatus = window.erfindergeistDoorStatus || {}, jQuery ));
+}( window.erfindergeistRoomStatus = window.erfindergeistRoomStatus || {}, jQuery ));
  
 jQuery( document ).ready(function() {
-  erfindergeistDoorStatus.init();
+  erfindergeistRoomStatus.init();
 });

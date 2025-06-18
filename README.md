@@ -1,17 +1,8 @@
-# erfindergeist-door-status
+# erfindergeist-room-status
 
-Wordpress plugin
+Wordpress plugin "Erfindergeist Room Status"
 
 ## dev
-
-## rest client
-
-- `humao.rest-client`
-
-
-### enable dev 
-
-
 
 ### serve with docker
 
@@ -23,6 +14,6 @@ Wordpress plugin
 
 ## vs code plugins
 
-recommend:
-- yogensia.searchwpdocs
-- devsense.phptools-vscode
+- `humao.rest-client`
+- `yogensia.searchwpdocs`
+- `devsense.phptools-vscode`
