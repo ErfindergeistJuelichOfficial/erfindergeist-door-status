@@ -72,7 +72,7 @@ function egj_room_status_settings_page() {
         <label for="token3">Token 3</label><br>
         <input id="token3" type="text" name="<?php echo $_SESSION['egj_room_status_token_input_name_3']; ?>" value="<?php echo isset($token_val_3) ? esc_attr($token_val_3) : ''; ?>"><br>
         <label for="status">Token 3</label><br>
-        <textarea id="status" name="<?php echo $_SESSION['egj_room_status_option_name_1']; ?>" rows="50" cols="50"><?php echo isset($jsonData) ? esc_textarea($status) : '{}'; ?></textarea><br>
+        <textarea id="status" name="<?php echo $_SESSION['egj_room_status_option_name_1']; ?>" rows="10" cols="50" style="resize: both"><?php echo isset($status) ? esc_textarea($status) : '{}'; ?></textarea><br>
         
         <br>
         
