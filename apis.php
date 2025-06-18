@@ -31,13 +31,31 @@ function egj_door_status_post_api( WP_REST_Request $request){
 
   $newData = json_decode(file_get_contents('php://input'), true);
 
+  // check newData is a one dimensional object
+  if (!is_array($newData) || array_values($newData) !== $newData) {
+    return new WP_Error('invalid_data', 'The data must be a one-dimensional array.', array('status' => 400));
+  }
+
+
+
+  // add current timestamp
+  // $newData['dateTime'] = (new DateTime())->format(DateTime::ATOM);
+
+  // set a dateTime key for each entry of newData
+  foreach ($newData as $key => $value) {
+    if (is_array($value)) {
+      $newData[$key]['dateTime'] = (new DateTime())->format(DateTime::ATOM);
+    } else {
+      $newData[$key] = [
+        'value' => $value,
+        'dateTime' => (new DateTime())->format(DateTime::ATOM)
+      ];
+    }
+  }
   // mix old and new data
   if ($oldData) {
     $newData = array_merge($oldData, $newData);
   }
-
-  // add current timestamp
-  $newData['dateTime'] = (new DateTime())->format(DateTime::ATOM);
 
   update_option( $_SESSION['egj_room_status_option_name_1'], $newData );
   $response = new WP_REST_Response($newData );
