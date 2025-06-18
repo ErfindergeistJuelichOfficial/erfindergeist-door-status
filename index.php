@@ -35,7 +35,8 @@ function egj_room_status_settings_page() {
     $token_val_2 = $_POST[ $_SESSION['egj_room_status_token_input_name_2'] ];
     $token_val_3 = $_POST[ $_SESSION['egj_room_status_token_input_name_3'] ];
 
-    $status = $_POST[ $_SESSION['egj_room_status_option_name_1'] ];
+    $status = json_decode($_POST[ $_SESSION['egj_room_status_option_name_1'] ], true);
+    
    
     update_option( $_SESSION['egj_room_status_token_option_name_1'], $token_val_1 );
     update_option( $_SESSION['egj_room_status_token_option_name_2'], $token_val_2 );
@@ -70,14 +71,16 @@ function egj_room_status_settings_page() {
         <input id="token2" type="text" name="<?php echo $_SESSION['egj_room_status_token_input_name_2']; ?>" value="<?php echo isset($token_val_2) ? esc_attr($token_val_2) : ''; ?>"><br>
         <label for="token3">Token 3</label><br>
         <input id="token3" type="text" name="<?php echo $_SESSION['egj_room_status_token_input_name_3']; ?>" value="<?php echo isset($token_val_3) ? esc_attr($token_val_3) : ''; ?>"><br>
+        <label for="status">Token 3</label><br>
+        <textarea id="status" name="<?php echo $_SESSION['egj_room_status_option_name_1']; ?>" rows="10" cols="50"><?php echo isset($jsonData) ? esc_textarea($jsonData) : ''; ?></textarea><br>
+        
         <br>
         
         <p class="submit">
           <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
         </p>
 
-        <h4>JSON Data (View Only)</h4>
-        <textarea name="<?php echo $_SESSION['egj_room_status_option_name_1']; ?>" rows="10" cols="50"><?php echo isset($jsonData) ? esc_textarea($jsonData) : ''; ?></textarea><br>
+       
       </form>
     </div>
   <?php
