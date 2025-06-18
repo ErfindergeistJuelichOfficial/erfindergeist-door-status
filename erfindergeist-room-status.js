@@ -37,11 +37,11 @@
       html += '</p>';
 
       $(`#${openStateContainerId}`).html(html);
+    }
   }
 
   function render(data) {
-    renderOpenState(data)
-   
+    renderOpenState(data)   
   }
 
   function getData() {
