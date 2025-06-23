@@ -38,11 +38,10 @@ function egj_door_status_post_api( WP_REST_Request $request){
   $oldData = get_option( $_SESSION['egj_room_status_option_name_1'] );
 
   $body = file_get_contents('php://input');
-
   
-  // if(!json_validate( $body)) {
-  //   return new WP_Error('invalid_json', 'The request body must be a valid JSON.', array('status' => 400));
-  // }
+  if(!json_validate( $body)) {
+    return new WP_Error('invalid_json', 'The request body must be a valid JSON.', array('status' => 400));
+  }
 
   $newData = json_decode($body, true);
 
