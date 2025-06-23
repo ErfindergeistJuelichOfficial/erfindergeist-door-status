@@ -30,10 +30,10 @@ function egj_room_status_settings_page() {
   $status = "";
 
   // Check if the user has submitted the form
-  if ( !empty($_POST) || wp_verify_nonce($_POST['egj_door_status_field'],'egj_door_status_action') ) {
-    $token_val_1 = $_POST[ $_SESSION['egj_room_status_token_input_name_1'] ];
-    $token_val_2 = $_POST[ $_SESSION['egj_room_status_token_input_name_2'] ];
-    $token_val_3 = $_POST[ $_SESSION['egj_room_status_token_input_name_3'] ];
+  if ( !empty($_POST) || wp_verify_nonce(egj_escape($_POST['egj_door_status_field']),'egj_door_status_action') ) {
+    $token_val_1 = egj_escape($_POST[ $_SESSION['egj_room_status_token_input_name_1'] ]);
+    $token_val_2 = egj_escape($_POST[ $_SESSION['egj_room_status_token_input_name_2'] ]);
+    $token_val_3 = egj_escape($_POST[ $_SESSION['egj_room_status_token_input_name_3'] ]);
    
     update_option( $_SESSION['egj_room_status_token_option_name_1'], $token_val_1 );
     update_option( $_SESSION['egj_room_status_token_option_name_2'], $token_val_2 );

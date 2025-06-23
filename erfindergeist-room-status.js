@@ -2,6 +2,8 @@
 
   const openStateContainerId = "erfindergeistRoomStatusContainer"; 
 
+  const healthCheckContainerId = "erfindergeistRoomStatusHealthCheckContainer";
+
   function renderError() {
     const html = `
        <div class="wp-block-coblocks-column__inner has-no-padding has-no-margin">

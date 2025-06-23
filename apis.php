@@ -7,17 +7,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'vars.php';
 require_once ABSPATH . 'wp-includes/rest-api.php';
 
+function egj_escape($string) {
+  $newString = trim($string);
+  $newString = quotemeta($newString);
+  $newString = htmlspecialchars($newString);
+  
+  return $newString;    
+}
+
 function egj_door_status_post_api( WP_REST_Request $request){
   // https://stackoverflow.com/questions/53126137/wordpress-rest-api-custom-endpoint-with-url-parameter
   // $product_ID = $data['id'];
   $token1 = $request->get_param( 'token' );
-  $token1_read = get_option( $_SESSION['egj_room_status_token_option_name_1'] );
+  $token1_read = egj_escape(get_option( $_SESSION['egj_room_status_token_option_name_1'] ));
 
   $token2 = $request->get_param( 'token2' );
-  $token2_read = get_option( $_SESSION['egj_room_status_token_option_name_2'] );
+  $token2_read = egj_escape(get_option( $_SESSION['egj_room_status_token_option_name_2'] ));
 
   $token3 = $request->get_param( 'token3' );
-  $token3_read = get_option( $_SESSION['egj_room_status_token_option_name_3'] );
+  $token3_read = egj_escape(get_option( $_SESSION['egj_room_status_token_option_name_3'] ));
 
   // Check if the tokens match 
   if($token1 !== $token1_read || $token2 !== $token2_read || $token3 !== $token3_read) {
@@ -29,8 +37,13 @@ function egj_door_status_post_api( WP_REST_Request $request){
 
   $oldData = get_option( $_SESSION['egj_room_status_option_name_1'] );
 
-  $newData = json_decode(file_get_contents('php://input'), true);
+  $body = egj_escape(file_get_contents('php://input'));
 
+  if(!json_validate($body)) {
+    return new WP_Error('invalid_json', 'The request body must be a valid JSON.', array('status' => 400));
+  }
+
+    $newData = json_decode($body, true);
   // check newData is a one dimensional object
   if (!is_array($newData)) {
     return new WP_Error('invalid_data', 'The data must be a one-dimensional array.', array('status' => 400));

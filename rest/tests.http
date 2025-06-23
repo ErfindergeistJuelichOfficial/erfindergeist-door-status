@@ -10,13 +10,12 @@ POST https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v2/room-status?t
 Content-Type: "application/json"
 
 {
-  "doorState": "close",
-  "lockState": "close",
+  "doorState": "off",
+  "lockState": "locked",
   "camPersonAlertState": "no",
   "camAnimalAlertState": "yes",
   "camMotionAlertState": "no",
-  "smokeAlertState": "no",
-  "roomTemp": "22.5"
+  "smokeAlertState": "off"
 }
 
 ### POST status only one key
