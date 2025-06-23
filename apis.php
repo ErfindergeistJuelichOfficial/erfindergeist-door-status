@@ -9,15 +9,12 @@ require_once ABSPATH . 'wp-includes/rest-api.php';
 
 function egj_escape($string) {
   $newString = trim($string);
-  // $newString = quotemeta($newString);
   $newString = htmlspecialchars($newString);
-  
   return $newString;    
 }
 
 function egj_door_status_post_api( WP_REST_Request $request){
   // https://stackoverflow.com/questions/53126137/wordpress-rest-api-custom-endpoint-with-url-parameter
-  // $product_ID = $data['id'];
   $token1 = $request->get_param( 'token' );
   $token1_read = egj_escape(get_option( $_SESSION['egj_room_status_token_option_name_1'] ));
 
@@ -32,11 +29,10 @@ function egj_door_status_post_api( WP_REST_Request $request){
     return new WP_Error();
   }
 
-  // other ways to get the body
-  // $body = $request->get_body();
-
   $oldData = get_option( $_SESSION['egj_room_status_option_name_1'] );
 
+  // other ways to get the body
+  // $body = $request->get_body();
   $body = file_get_contents('php://input');
   
   if(!json_validate( $body)) {
@@ -44,15 +40,11 @@ function egj_door_status_post_api( WP_REST_Request $request){
   }
 
   $newData = json_decode($body, true);
-
     
   // check newData is a one dimensional object
   if (!is_array($newData)) {
     return new WP_Error('invalid_data', 'The data must be a one-dimensional array.', array('status' => 400));
   }
-
-  // add current timestamp
-  // $newData['dateTime'] = (new DateTime())->format(DateTime::ATOM);
 
   // set a dateTime key for each entry of newData
   foreach ($newData as $key => $value) {
