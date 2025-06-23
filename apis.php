@@ -37,7 +37,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
 
   $oldData = get_option( $_SESSION['egj_room_status_option_name_1'] );
 
-  $body = egj_escape(file_get_contents('php://input'));
+  $body = file_get_contents('php://input');
 
   
   // if(!json_validate( $body)) {
@@ -61,7 +61,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
       $newData[$key]['dateTime'] = (new DateTime())->format(DateTime::ATOM);
     } else {
       $newData[$key] = [
-        'value' => $value,
+        'value' => egj_escape($value),
         'dateTime' => (new DateTime())->format(DateTime::ATOM)
       ];
     }
