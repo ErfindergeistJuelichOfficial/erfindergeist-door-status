@@ -9,7 +9,7 @@ require_once ABSPATH . 'wp-includes/rest-api.php';
 
 function egj_escape($string) {
   $newString = trim($string);
-  $newString = quotemeta($newString);
+  // $newString = quotemeta($newString);
   $newString = htmlspecialchars($newString);
   
   return $newString;    
