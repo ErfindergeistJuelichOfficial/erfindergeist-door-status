@@ -20,6 +20,10 @@
 
       let html = '<ol class="list-group">'
 
+      html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
+      html += '<h5 class="mb-1">List group item heading</h5>'
+      html += '</li>'
+
       if(data.smokeAlertBattery.value) {
         html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
         html += '<div class="ms-2 me-auto">'
