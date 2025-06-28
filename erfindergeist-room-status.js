@@ -1,7 +1,6 @@
 (function( erfindergeistRoomStatus, $, undefined ) {
 
   const openStateContainerId = "erfindergeistRoomStatusContainer"; 
-
   const healthCheckContainerId = "erfindergeistRoomStatusHealthCheckContainer";
 
   function renderError() {
@@ -14,21 +13,55 @@
   }
 
   function renderHealthState(data) {
-    if(!$(`#${healthCheckContainerId}`).length) return;
+    if(!$(`#${healthCheckContainerId}`).length) { 
+      return;
+    }
     if (data) {
-      let html = "<p>";
+
+      let html = '<ol class=\"list-group">'
 
       if(data.smokeAlertBattery.value) {
-        html += `SmokeAlert Battery ${data.smokeAlertBattery.value}<br>`;
+        html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
+        html += '<div class="ms-2 me-auto">'
+        html += `<div class="fw-bold">SmokeAlert Battery</div>`
+        html += `${data.smokeAlertBattery.value}%`;
+        html += '</div>'
+        html += '</li>'
       }
       if(data.lockBattery.value) {
-        html += `Lock Battery ${data.lockBattery.value}<br>`;
+        html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
+        html += '<div class="ms-2 me-auto">'
+        html += `<div class="fw-bold">Lock Battery</div>`
+        html += `${data.lockBattery.value}%`;
+        html += '</div>'
+        html += '</li>'
       }
       if(data.doorBattery.value) {
-        html += `Door Battery ${data.doorBattery.value}<br>`;
+        html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
+        html += '<div class="ms-2 me-auto">'
+        html += `<div class="fw-bold">Door Battery</div>`
+        html += `${data.doorBattery.value}%`;
+        html += '</div>'
+        html += '</li>'
+      }
+      if(data.sensorA4F0Battery.value) {
+        html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
+        html += '<div class="ms-2 me-auto">'
+        html += `<div class="fw-bold">Sensor A4F0  Battery</div>`
+        html += `${data.sensorA4F0Battery.value}%`;
+        html += '</div>'
+        html += '</li>'
+      }
+      if(data.sensorA5A8Battery.value) {
+        html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
+        html += '<div class="ms-2 me-auto">'
+        html += `<div class="fw-bold">Sensor A5A8  Battery</div>`
+        html += `${data.sensorA5A8Battery.value}%`;
+        html += '</div>'
+        html += '</li>'
       }
      
-      html += '</p>';
+      html += '</ol>';
       $(`#${healthCheckContainerId}`).html(html);
     }
 
