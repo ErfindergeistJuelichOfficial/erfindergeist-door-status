@@ -21,13 +21,13 @@
       let html = '<ol class="list-group">'
 
       html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
-      html += '<h5 class="mb-1">List group item heading</h5>'
+      html += '<h5 class="mb-1">Batterie Status</h5>'
       html += '</li>'
 
       if(data.smokeAlertBattery.value) {
         html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
         html += '<div class="ms-2 me-auto">'
-        html += `<div class="fw-bold">SmokeAlert Battery</div>`
+        html += `<div class="fw-bold">SmokeAlert</div>`
         html += `${data.smokeAlertBattery.value}%`;
         html += '</div>'
         html += '</li>'
@@ -35,7 +35,7 @@
       if(data.lockBattery.value) {
         html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
         html += '<div class="ms-2 me-auto">'
-        html += `<div class="fw-bold">Lock Battery</div>`
+        html += `<div class="fw-bold">Lock</div>`
         html += `${data.lockBattery.value}%`;
         html += '</div>'
         html += '</li>'
@@ -43,7 +43,7 @@
       if(data.doorBattery.value) {
         html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
         html += '<div class="ms-2 me-auto">'
-        html += `<div class="fw-bold">Door Battery</div>`
+        html += `<div class="fw-bold">Door</div>`
         html += `${data.doorBattery.value}%`;
         html += '</div>'
         html += '</li>'
@@ -51,7 +51,7 @@
       if(data.sensorA4F0Battery.value) {
         html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
         html += '<div class="ms-2 me-auto">'
-        html += `<div class="fw-bold">Sensor A4F0  Battery</div>`
+        html += `<div class="fw-bold">Sensor A4F0</div>`
         html += `${data.sensorA4F0Battery.value}%`;
         html += '</div>'
         html += '</li>'
@@ -59,7 +59,7 @@
       if(data.sensorA5A8Battery.value) {
         html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
         html += '<div class="ms-2 me-auto">'
-        html += `<div class="fw-bold">Sensor A5A8  Battery</div>`
+        html += `<div class="fw-bold">Sensor A5A8</div>`
         html += `${data.sensorA5A8Battery.value}%`;
         html += '</div>'
         html += '</li>'
