@@ -18,7 +18,7 @@
     }
     if (data) {
 
-      let html = '<ol class=\"list-group">'
+      let html = '<ol class="list-group">'
 
       if(data.smokeAlertBattery.value) {
         html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
