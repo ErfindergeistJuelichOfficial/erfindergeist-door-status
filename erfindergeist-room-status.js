@@ -13,8 +13,29 @@
     $(`#${containerId}`).html(html);
   }
 
+  function renderHealthState(data) {
+    if(!$(`#${healthCheckContainerId}`).length) return;
+    if (data) {
+      let html = "<p>";
+
+      if(data.smokeAlertBattery.value) {
+        html += `SmokeAlert Battery ${data.smokeAlertBattery.value}<br>`;
+      }
+      if(data.lockBattery.value) {
+        html += `Lock Battery ${data.lockBattery.value}<br>`;
+      }
+      if(data.doorBattery.value) {
+        html += `Door Battery ${data.doorBattery.value}<br>`;
+      }
+     
+      html += '</p>';
+      $(`#${healthCheckContainerId}`).html(html);
+    }
+
+  }
+
+
   function renderOpenState(data) {
-    
     if(!$(`#${openStateContainerId}`).length) return;
     if (
       data &&
@@ -22,17 +43,13 @@
     ) {
       let html = "";
 
-      if (data.lockState.value === "open") {
+      if (data.lockState.value === "unlocked") {
         html += '<p class="is-style-info">';
         html += 'Werkstatt ist offen<br>';
-      } else if (data.lockState.value === "close") {
-        html += '<p class="is-style-error">';
-        html += "Werkstatt ist geschlossen<br>";
       } else {
         html += '<p class="is-style-error">';
-        html += "Werkstatt unbekannter Zustand<br>";
+        html += "Werkstatt ist geschlossen<br>";
       }
-
       html +=
         "Letzte Aktualisierung: " + new Date(data.lockState.dateTime).toLocaleString();
 
@@ -43,7 +60,8 @@
   }
 
   function render(data) {
-    renderOpenState(data)   
+    renderOpenState(data);
+    renderHealthState(data);  
   }
 
   function getData() {
