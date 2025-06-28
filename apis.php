@@ -7,29 +7,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'vars.php';
 require_once ABSPATH . 'wp-includes/rest-api.php';
 
+// https://mojoauth.com/escaping/php-string-escaping-in-php/
 function egj_escape($string) {
   $newString = trim($string);
-  $newString = htmlspecialchars($newString);
-  return $newString;    
+  $newString = addslashes($newString);
+  return $newString;
 }
 
 function egj_door_status_post_api( WP_REST_Request $request){
   // https://stackoverflow.com/questions/53126137/wordpress-rest-api-custom-endpoint-with-url-parameter
-  $token1 = $request->get_param( 'token' );
-  $token1_read = egj_escape(get_option( $_SESSION['egj_room_status_token_option_name_1'] ));
+  $token1_param = egj_escape($request->get_param( 'token' ));
+  $token1_db = get_option( $_SESSION['egj_room_status_token_option_name_1'] );
 
-  $token2 = $request->get_param( 'token2' );
-  $token2_read = egj_escape(get_option( $_SESSION['egj_room_status_token_option_name_2'] ));
+  $token2_param = egj_escape($request->get_param( 'token2' ));
+  $token2_db = get_option( $_SESSION['egj_room_status_token_option_name_2'] );
 
-  $token3 = $request->get_param( 'token3' );
-  $token3_read = egj_escape(get_option( $_SESSION['egj_room_status_token_option_name_3'] ));
+  $token3_param = egj_escape($request->get_param( 'token3' ));
+  $token3_db = get_option( $_SESSION['egj_room_status_token_option_name_3'] );
 
-  // Check if the tokens match 
-  if($token1 !== $token1_read || $token2 !== $token2_read || $token3 !== $token3_read) {
+  // Check if the tokens match
+  if($token1_param !== $token1_db || $token2_param !== $token2_db || $token3_param !== $token3_db) {
     return new WP_Error();
   }
-
-  $oldData = get_option( $_SESSION['egj_room_status_option_name_1'] );
 
   // other ways to get the body
   // $body = $request->get_body();
@@ -57,15 +56,18 @@ function egj_door_status_post_api( WP_REST_Request $request){
       ];
     }
   }
+
   // mix old and new data
+  $oldData = get_option( $_SESSION['egj_room_status_option_name_1'] );
+
   if ($oldData) {
     $newData = array_merge($oldData, $newData);
   }
 
   update_option( $_SESSION['egj_room_status_option_name_1'], $newData );
+
   $response = new WP_REST_Response($newData );
   $response->set_status(200);
-
   return $response;
 }
 

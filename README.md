@@ -14,6 +14,8 @@ Wordpress plugin "Erfindergeist Room Status"
 
 ## vs code plugins
 
+- `esbenp.prettier-vscode`
 - `humao.rest-client`
 - `yogensia.searchwpdocs`
-- `devsense.phptools-vscode`
+- `streetsidesoftware.code-spell-checker`
+- `streetsidesoftware.code-spell-checker-german` 
