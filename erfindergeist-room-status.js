@@ -31,7 +31,7 @@
       let html = '<ol class="list-group">\n'
 
       html += '<li class="list-group-item d-flex justify-content-between align-items-start">\n'
-      html += '<h5 class="mb-1">Batterie Status</h5>\n'
+      html += '<h5 class="mb-1 fw-bold">Batterie Status</h5>\n'
       html += '</li>\n'
 
       if(data.smokeAlertBattery.value) {
@@ -48,15 +48,12 @@
       }
       if(data.sensorA5A8Battery.value) {
         html += renderHealthItem("Sensor A5A8", data.sensorA5A8Battery.value)
-
       }
      
       html += '</ol>\n';
       $(`#${healthCheckContainerId}`).html(html);
     }
-
   }
-
 
   function renderOpenState(data) {
     if(!$(`#${openStateContainerId}`).length) return;
