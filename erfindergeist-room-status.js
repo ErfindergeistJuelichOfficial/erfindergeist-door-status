@@ -12,60 +12,46 @@
     $(`#${containerId}`).html(html);
   }
 
+  function renderHealthItem(title, value) {
+    let html = `<li class="list-group-item d-flex justify-content-between align-items-start ${value < 25 ? "list-group-item-danger" : ""}"> \n`
+    html += '<div class="ms-2 me-auto">\n'
+    html += `<div class="fw-bold">${title}</div>\n`
+    html += `${value}%\n`;
+    html += '</div>\n'
+    html += '</li>\n'
+    return html;
+  }
+
   function renderHealthState(data) {
     if(!$(`#${healthCheckContainerId}`).length) { 
       return;
     }
     if (data) {
 
-      let html = '<ol class="list-group">'
+      let html = '<ol class="list-group">\n'
 
-      html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
-      html += '<h5 class="mb-1">Batterie Status</h5>'
-      html += '</li>'
+      html += '<li class="list-group-item d-flex justify-content-between align-items-start">\n'
+      html += '<h5 class="mb-1">Batterie Status</h5>\n'
+      html += '</li>\n'
 
       if(data.smokeAlertBattery.value) {
-        html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
-        html += '<div class="ms-2 me-auto">'
-        html += `<div class="fw-bold">SmokeAlert</div>`
-        html += `${data.smokeAlertBattery.value}%`;
-        html += '</div>'
-        html += '</li>'
+        html += renderHealthItem("SmokeAlert", data.smokeAlertBattery.value)
       }
       if(data.lockBattery.value) {
-        html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
-        html += '<div class="ms-2 me-auto">'
-        html += `<div class="fw-bold">Lock</div>`
-        html += `${data.lockBattery.value}%`;
-        html += '</div>'
-        html += '</li>'
+        html += renderHealthItem("Lock", data.lockBattery.value)
       }
       if(data.doorBattery.value) {
-        html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
-        html += '<div class="ms-2 me-auto">'
-        html += `<div class="fw-bold">Door</div>`
-        html += `${data.doorBattery.value}%`;
-        html += '</div>'
-        html += '</li>'
+        html += renderHealthItem("Door", data.doorBattery.value)
       }
       if(data.sensorA4F0Battery.value) {
-        html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
-        html += '<div class="ms-2 me-auto">'
-        html += `<div class="fw-bold">Sensor A4F0</div>`
-        html += `${data.sensorA4F0Battery.value}%`;
-        html += '</div>'
-        html += '</li>'
+        html += renderHealthItem("Sensor A4F0", data.sensorA4F0Battery.value)
       }
       if(data.sensorA5A8Battery.value) {
-        html += '<li class="list-group-item d-flex justify-content-between align-items-start">'
-        html += '<div class="ms-2 me-auto">'
-        html += `<div class="fw-bold">Sensor A5A8</div>`
-        html += `${data.sensorA5A8Battery.value}%`;
-        html += '</div>'
-        html += '</li>'
+        html += renderHealthItem("Sensor A5A8", data.sensorA5A8Battery.value)
+
       }
      
-      html += '</ol>';
+      html += '</ol>\n';
       $(`#${healthCheckContainerId}`).html(html);
     }
 
