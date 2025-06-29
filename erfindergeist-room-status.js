@@ -27,28 +27,32 @@
       return;
     }
     if (data) {
+      if (!erfindergeistRoomStatusHealthCheckMapping && typeof erfindergeistRoomStatusHealthCheckMapping !== "object") {
+        return;
+      }
+
 
       let html = '<ol class="list-group">\n'
 
       html += '<li class="list-group-item d-flex justify-content-between align-items-start">\n'
-      html += '<h5 class="mb-1 fw-bold">Batterie Status</h5>\n'
+      html += `<h5 class="mb-1 fw-bold">${erfindergeistRoomStatusHealthCheckTitle}</h5>\n`
       html += '</li>\n'
 
-      if(data.smokeAlertBattery.value) {
-        html += renderHealthItem("SmokeAlert", data.smokeAlertBattery.value)
-      }
-      if(data.lockBattery.value) {
-        html += renderHealthItem("Lock", data.lockBattery.value)
-      }
-      if(data.doorBattery.value) {
-        html += renderHealthItem("Door", data.doorBattery.value)
-      }
-      if(data.sensorA4F0Battery.value) {
-        html += renderHealthItem("Sensor A4F0", data.sensorA4F0Battery.value)
-      }
-      if(data.sensorA5A8Battery.value) {
-        html += renderHealthItem("Sensor A5A8", data.sensorA5A8Battery.value)
-      }
+      // const erfindergeistRoomStatusHealthCheckMapping = {
+      //   smokeAlertBattery: "Rauchmelder",
+      //   lockBattery: "Tür Schloss",
+      //   doorBattery: "Sensor Tür",
+      //   sensorA4F0Battery: "Sensor A4F0",
+      //   sensorA5A8Battery: "Sensor A5A8",
+      //   lockFrontDoorBattery: "Haustüre Schloss",
+      //   lockAWOBattery: "AWO Schloss"
+      // }
+
+      Object.keys(erfindergeistRoomStatusHealthCheckMapping).forEach(key => {
+        if(data[key].value) {
+          html += renderHealthItem(mapping[key], data[key].value)
+        }
+      })
      
       html += '</ol>\n';
       $(`#${healthCheckContainerId}`).html(html);
