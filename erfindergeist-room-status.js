@@ -50,7 +50,7 @@
 
       Object.keys(erfindergeistRoomStatusHealthCheckMapping).forEach(key => {
         if(data[key].value) {
-          html += renderHealthItem(mapping[key], data[key].value)
+          html += renderHealthItem(erfindergeistRoomStatusHealthCheckMapping[key], data[key].value)
         }
       })
      
