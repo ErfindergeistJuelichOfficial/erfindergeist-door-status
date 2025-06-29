@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'vars.php';
 require_once 'apis.php';
 require_once 'styles.php';
+require_once 'content.php';
 
 function egj_room_status_settings_page() {
     

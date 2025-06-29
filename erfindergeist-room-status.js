@@ -73,6 +73,11 @@
     }
   }
 
+  function renderPageBar(data) {
+    html = "<div>hallo welt</div>"
+    $(`#page`).insertBefore(html)
+  }
+
   function render(data) {
     renderOpenState(data);
     renderHealthState(data);  
