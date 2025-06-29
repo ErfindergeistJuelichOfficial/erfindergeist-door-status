@@ -13,7 +13,7 @@
   }
 
   function renderHealthItem(title, value) {
-    let html = `<li class="list-group-item d-flex justify-content-between align-items-start ${value < 25 ? "list-group-item-danger" : ""}"> \n`
+    let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0 ${value < 25 ? "list-group-item-danger" : ""}"> \n`
     html += '<div class="ms-2 me-auto">\n'
     html += `<div class="fw-bold">${title}</div>\n`
     html += `${value}%\n`;
@@ -34,19 +34,9 @@
 
       let html = '<ol class="list-group">\n'
 
-      html += '<li class="list-group-item d-flex justify-content-between align-items-start">\n'
+      html += '<li class="list-group-item d-flex justify-content-between align-items-start m-0">\n'
       html += `<h5 class="mb-1 fw-bold">${erfindergeistRoomStatusHealthCheckTitle}</h5>\n`
       html += '</li>\n'
-
-      // const erfindergeistRoomStatusHealthCheckMapping = {
-      //   smokeAlertBattery: "Rauchmelder",
-      //   lockBattery: "Tür Schloss",
-      //   doorBattery: "Sensor Tür",
-      //   sensorA4F0Battery: "Sensor A4F0",
-      //   sensorA5A8Battery: "Sensor A5A8",
-      //   lockFrontDoorBattery: "Haustüre Schloss",
-      //   lockAWOBattery: "AWO Schloss"
-      // }
 
       Object.keys(erfindergeistRoomStatusHealthCheckMapping).forEach(key => {
         if(data[key].value) {

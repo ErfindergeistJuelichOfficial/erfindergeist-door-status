@@ -13,16 +13,16 @@ const erfindergeistRoomStatusHealthCheckTitle = "Batterie Status"
 const erfindergeistRoomStatusHealthCheckMapping =
 {
   smokeAlertBattery: "Rauchmelder",
-  lockBattery: "Tür Schloss",
   doorBattery: "Sensor Tür",
-  sensorA4F0Battery: "Sensor A4F0",
-  sensorA5A8Battery: "Sensor A5A8",
+  lockBattery: "Tür Schloss",
   lockFrontDoorBattery: "Haustüre Schloss",
-  lockAWOBattery: "AWO Schloss"
+  lockAWOBattery: "AWO Schloss",
+  sensorA4F0Battery: "Sensor A4F0",
+  sensorA5A8Battery: "Sensor A5A8"
 }
 </script>
 <div id="erfindergeistRoomStatusHealthCheckContainer">
-  // content
+  // content will be automatically replaced
 </div>
 ```
 
