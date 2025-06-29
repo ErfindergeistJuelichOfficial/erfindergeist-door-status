@@ -3,6 +3,8 @@
   const openStateContainerId = "erfindergeistRoomStatusContainer"; 
   const healthCheckContainerId = "erfindergeistRoomStatusHealthCheckContainer";
 
+  const globalBarContainerId = "erfindergeist-room-status-global";
+
   function renderError() {
     const html = `
        <div class="wp-block-coblocks-column__inner has-no-padding has-no-margin">
@@ -73,14 +75,17 @@
     }
   }
 
-  function renderPageBar(data) {
-    html = "<div>hallo welt</div>"
-    $(`#page`).insertBefore(html)
+  function renderGlobalBar(data) {
+    let html = "<p>hallo welt</p>"
+    $(`#${ globalBarContainerId}`).html(html);
+
+   
   }
 
   function render(data) {
     renderOpenState(data);
-    renderHealthState(data);  
+    renderHealthState(data);
+    renderGlobalBar(data);
   }
 
   function getData() {

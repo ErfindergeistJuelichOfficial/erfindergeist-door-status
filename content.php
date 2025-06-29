@@ -10,7 +10,7 @@ function custom_content_after_body_open_tag() {
 
     ?>
 
-    <div>My Custom Content</div>
+    <div id="erfindergeist-room-status-global"></div>
 
     <?php
 

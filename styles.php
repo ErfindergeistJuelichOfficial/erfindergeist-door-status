@@ -4,7 +4,16 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit;
 }
 
+
+
 function erfindergeist_room_status_styles() {
+  wp_enqueue_style(
+    'erfindergeist-room-status-style',
+    plugins_url( '/', __FILE__ ) . 'erfindergeist-room-status.css',
+    array('bootstrap'),
+    "1.0"
+  );
+
   wp_enqueue_script(
     'erfindergeist-room-status-script',
     plugins_url( '/', __FILE__ ) . 'erfindergeist-room-status.js',
