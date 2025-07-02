@@ -4,8 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit;
 }
 
-
-
 function erfindergeist_room_status_styles() {
   wp_enqueue_style(
     'erfindergeist-room-status-style',

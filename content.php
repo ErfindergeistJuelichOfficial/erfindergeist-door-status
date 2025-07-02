@@ -8,13 +8,12 @@ require_once 'vars.php';
 
 function custom_content_after_body_open_tag() {
 
-    ?>
-
-    <div id="erfindergeist-room-status-global"></div>
-
-    <?php
+  ?>
+  <div id="erfindergeist-room-status-global" class="position-fixed top-0 start-0 w-100 z-1000"></div>
+  <?php
 
 }
+
 
 add_action('wp_body_open', 'custom_content_after_body_open_tag');
 
