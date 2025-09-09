@@ -1,7 +1,24 @@
 #erfindergeist-room-status-global {
-  position: fixed;
+  position: relative;
+  width: 100%;
 }
 
-#erfindergeist-room-status-global-bubble {
-  margin: 8px;
+.erfindergeist-room-status-open {
+  width: 100%;
+  background-color: #d6efee;
+  padding: 8px;
 }
+
+.erfindergeist-room-status-closed {
+  width: 100%;
+  background-color: #cf888f;
+  padding: 8px;
+}
+
+.erfindergeist-room-status-warning {
+  width: 100%;
+  background-color: #ecdc9b;
+  padding: 8px;
+}
+
+

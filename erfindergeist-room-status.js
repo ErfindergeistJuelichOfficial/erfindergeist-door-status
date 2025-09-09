@@ -76,19 +76,25 @@
   }
 
   function renderGlobalBar(data) {
-    const wordpressAdminBar = $(`#wpadminbar`);
-    if(wordpressAdminBar.length) {
-      $(`#${ globalBarContainerId}`).css("margin-top", `${wordpressAdminBar.height()}px`);
-    }
+    // const wordpressAdminBar = $(`#wpadminbar`);
+    // if(wordpressAdminBar.length) {
+    //   $(`#${ globalBarContainerId}`).css("margin-top", `${wordpressAdminBar.height()}px`);
+    // }
 
     let html = "";   
 
     if (data && data.lockWorkshopState && data.lockWorkshopState.value && data.lockWorkshopState.value === "unlocked") {
-      html += '<div class="erfindergeist-room-status-global-bubble is-style-info">Werkstatt offen</div>';
+      html += '<div class="#erfindergeist-room-status-open">Werkstatt offen</div>';
+    } else {
+      html += '<div class="#erfindergeist-room-status-closed">Werkstatt geschlossen</div>';
     }
 
-    if (data && data.lockWorkshopState && data.lockWorkshopState.value && data.lockWorkshopState.value !== "unlocked") {
-      html += '<div class="erfindergeist-room-status-global-bubble is-style-error">Werkstatt geschlossen</div>';
+    if (data && data.smokeAlertState && data.smokeAlertState.value && data.smokeAlertState.value === "on") {
+      html += '<div class="#erfindergeist-room-status-warning">Rauchmelder aktiv - bitte schau jemand nach ob alles in Ordnung ist.</div>';
+    }
+
+    if (data && data.floodAlertState && data.floodAlertState.value && data.floodAlertState.value === "on") {
+      html += '<div class="#erfindergeist-room-status-warning">Wasser im Raum entdeckt - bitte schau jemand nach ob alles in Ordnung ist.</div>';
     }
 
      $(`#${ globalBarContainerId}`).html(html);   
