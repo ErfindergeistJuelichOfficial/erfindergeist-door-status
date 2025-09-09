@@ -17,7 +17,7 @@ function egj_escape($string) {
 function egj_door_status_post_api( WP_REST_Request $request){
   // rate limiting
   $ip = $_SERVER['REMOTE_ADDR'];
-  $transient_key = 'egj_post_rate_limit_' . md5($ip);
+  $transient_key = 'erfindergeist_post_rate_limit_' . md5($ip);
   $limit = 5; // max 5 requests
   $window = 3600;
 
@@ -25,7 +25,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
   if ($count === false) {
     set_transient($transient_key, 1, $window);
   } elseif ($count >= $limit) {
-    $transient_mail_key = 'egj_post_mail_rate_limit_' . md5($ip);
+    $transient_mail_key = 'erfindergeist_post_mail_rate_limit_' . md5($ip);
     $bool = get_transient($transient_mail_key);
     if (!$bool) {
       set_transient($transient_mail_key, true, $window);
@@ -102,7 +102,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
 function egj_door_status_get_api( $data ) {
   // rate limiting
   $ip = $_SERVER['REMOTE_ADDR'];
-  $transient_key = 'egj_get_rate_limit_' . md5($ip);
+  $transient_key = 'erfindergeist_get_rate_limit_' . md5($ip);
   $limit = 400; 
   $window = 3600;
 
