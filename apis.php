@@ -19,7 +19,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
   $ip = $_SERVER['REMOTE_ADDR'];
   $transient_key = 'egj_post_rate_limit_' . md5($ip);
   $limit = 5; // max 5 requests
-  $window = HOUR_IN_SECONDS;
+  $window = 3600;
 
   $count = get_transient($transient_key);
   if ($count === false) {
@@ -28,7 +28,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
     $transient_mail_key = 'egj_post_mail_rate_limit_' . md5($ip);
     $bool = get_transient($transient_mail_key);
     if (!$bool) {
-      set_transient($transient_mail_key, true, HOUR_IN_SECONDS);
+      set_transient($transient_mail_key, true, $window);
       $admin = get_userdata(1);
       $email = $admin ? $admin->user_email : null;
       $site_url = get_site_url();
@@ -104,7 +104,7 @@ function egj_door_status_get_api( $data ) {
   $ip = $_SERVER['REMOTE_ADDR'];
   $transient_key = 'egj_get_rate_limit_' . md5($ip);
   $limit = 400; 
-  $window = HOUR_IN_SECONDS;
+  $window = 3600;
 
   $count = get_transient($transient_key);
   if ($count === false) {
