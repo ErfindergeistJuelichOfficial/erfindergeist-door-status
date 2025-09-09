@@ -76,10 +76,13 @@
   }
 
   function renderGlobalBar(data) {
-    let html = "<p>hallo welt</p>"
-    $(`#${ globalBarContainerId}`).html(html);
+    const wordpressAdminBar = $(`#wpadminbar`);
+    if(wordpressAdminBar.length) {
+      $(`#${ globalBarContainerId}`).css("top", `${wordpressAdminBar.height()}px`);
+    }
 
-   
+    let html = "<div class=\"erfindergeist-room-status-global-bubble\">hallo welt</div>"
+    $(`#${ globalBarContainerId}`).html(html);   
   }
 
   function render(data) {

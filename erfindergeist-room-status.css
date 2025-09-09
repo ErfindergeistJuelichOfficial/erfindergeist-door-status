@@ -1,4 +1,7 @@
 #erfindergeist-room-status-global {
-  height: 20px;
   position: fixed;
+}
+
+#erfindergeist-room-status-global-bubble {
+  margin: 8px;
 }
