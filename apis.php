@@ -31,8 +31,9 @@ function egj_door_status_post_api( WP_REST_Request $request){
       set_transient($transient_mail_key, true, HOUR_IN_SECONDS);
       $admin = get_userdata(1);
       $email = $admin ? $admin->user_email : null;
+      $site_url = get_site_url();
       if($email) {
-        wp_mail($email, 'API Hammering detected', "IP: $ip hat das Rate Limit überschritten.");
+        wp_mail($email, 'Wordpress: erfindergeist-room-status: API Hammering detected', "SERVER: $site_url \n IP: $ip hat das Rate Limit überschritten.");
       }
     }
 
