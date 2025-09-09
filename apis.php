@@ -18,7 +18,7 @@ function egj_door_status_post_api( WP_REST_Request $request){
   // rate limiting
   $ip = $_SERVER['REMOTE_ADDR'];
   $transient_key = 'erfindergeist_post_rate_limit_' . md5($ip);
-  $limit = 5; // max 5 requests
+  $limit = 400; // there is one hourly request, but every state change did a change as well
   $window = 3600;
 
   $count = get_transient($transient_key);
