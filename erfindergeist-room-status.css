@@ -1,6 +1,9 @@
 #erfindergeist-room-status-global {
-  position: relative;
+  position: fixed;
   width: 100%;
+  z-index: 99999;
+  left: 0;
+  top: 0;
 }
 
 .erfindergeist-room-status-open {

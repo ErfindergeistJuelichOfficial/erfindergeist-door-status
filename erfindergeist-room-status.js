@@ -76,18 +76,21 @@
   }
 
   function renderGlobalBar(data) {
-    // const wordpressAdminBar = $(`#wpadminbar`);
-    // if(wordpressAdminBar.length) {
-    //   $(`#${ globalBarContainerId}`).css("margin-top", `${wordpressAdminBar.height()}px`);
-    // }
+    const erfindergeistBarContainer = $(`#${ globalBarContainerId}`);
+    const wordpressAdminBarcontainer = $(`#wpadminbar`);
+    const pageContainer = $(`#page`);
+
+    if(!erfindergeistBarContainer.length) return;
+    if(!data) return;
 
     let html = "";   
 
     if (data && data.lockWorkshopState && data.lockWorkshopState.value && data.lockWorkshopState.value === "unlocked") {
       html += '<div class="erfindergeist-room-status-open">Werkstatt offen</div>';
-    } else {
-      html += '<div class="erfindergeist-room-status-closed">Werkstatt geschlossen</div>';
     }
+    // else {
+    //   html += '<div class="erfindergeist-room-status-closed">Werkstatt geschlossen</div>';
+    // }
 
     if (data && data.smokeAlertState && data.smokeAlertState.value && data.smokeAlertState.value === "on") {
       html += '<div class="erfindergeist-room-status-warning">Rauchmelder aktiv - bitte schau jemand nach ob alles in Ordnung ist.</div>';
@@ -97,7 +100,14 @@
       html += '<div class="erfindergeist-room-status-warning">Wasser im Raum entdeckt - bitte schau jemand nach ob alles in Ordnung ist.</div>';
     }
 
-     $(`#${ globalBarContainerId}`).html(html);   
+    erfindergeistBarContainer.html(html);   
+   
+    if(erfindergeistBarContainer && wordpressAdminBarcontainer.length) {
+      erfindergeistBarContainer.css("top", `${wordpressAdminBarcontainer.height()}px`);
+      if(pageContainer && pageContainer.length) {
+        pageContainer.css("margin-top", `${erfindergeistBarContainer.offset().top()}px`);
+      }
+    }
   }
 
   function render(data) {
