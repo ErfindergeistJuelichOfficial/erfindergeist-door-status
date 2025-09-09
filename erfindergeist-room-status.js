@@ -105,7 +105,7 @@
     if(wordpressAdminBarcontainer && wordpressAdminBarcontainer.length) {
       erfindergeistBarContainer.css("top", `${wordpressAdminBarcontainer.height()}px`);
       if(pageContainer && pageContainer.length) {
-        pageContainer.css("margin-top", `${erfindergeistBarContainer.offset().top}px`);
+        pageContainer.css("margin-top", `${wordpressAdminBarcontainer.height() + erfindergeistBarContainer.height()}px`);
       }
     }
   }
