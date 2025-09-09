@@ -86,7 +86,7 @@
     let html = "";   
 
     if (data && data.lockWorkshopState && data.lockWorkshopState.value && data.lockWorkshopState.value === "unlocked") {
-      html += '<div class="erfindergeist-room-status-open">🔓 Werkstatt ist offen - komm gerne spontan vorbei. 🔓</div>';
+      html += '<div class="erfindergeist-room-status-open">🔓 Werkstatt ist offen - kommt gerne spontan vorbei. 🔓</div>';
     }
     // else {
     //   html += '<div class="erfindergeist-room-status-closed">Werkstatt geschlossen</div>';
