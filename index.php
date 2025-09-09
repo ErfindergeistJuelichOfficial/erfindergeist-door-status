@@ -4,7 +4,7 @@
  * Description: Room status Erfindergeist Jülich e.V.
  * Author: Lars 'vreezy' Eschweiler
  * Author URI: https://www.vreezy.de
- * Version: 3.0.0
+ * Version: 3.1.0
  * Text Domain: erfindergeist
  * Domain Path: /languages
  * Tested up to: 6.8
