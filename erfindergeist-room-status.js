@@ -78,11 +78,20 @@
   function renderGlobalBar(data) {
     const wordpressAdminBar = $(`#wpadminbar`);
     if(wordpressAdminBar.length) {
-      $(`#${ globalBarContainerId}`).css("top", `${wordpressAdminBar.height()}px`);
+      $(`#${ globalBarContainerId}`).css("margin-top", `${wordpressAdminBar.height()}px`);
     }
 
-    let html = "<div class=\"erfindergeist-room-status-global-bubble\">hallo welt</div>"
-    $(`#${ globalBarContainerId}`).html(html);   
+    let html = "";   
+
+    if (data && data.lockWorkshopState && data.lockWorkshopState.value && data.lockWorkshopState.value === "unlocked") {
+      html += '<div class="erfindergeist-room-status-global-bubble is-style-info">Werkstatt offen</div>';
+    }
+
+    if (data && data.lockWorkshopState && data.lockWorkshopState.value && data.lockWorkshopState.value !== "unlocked") {
+      html += '<div class="erfindergeist-room-status-global-bubble is-style-error">Werkstatt geschlossen</div>';
+    }
+
+     $(`#${ globalBarContainerId}`).html(html);   
   }
 
   function render(data) {
