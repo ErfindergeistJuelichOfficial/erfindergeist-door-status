@@ -15,6 +15,33 @@ function egj_escape($string) {
 }
 
 function egj_door_status_post_api( WP_REST_Request $request){
+  // rate limiting
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $transient_key = 'egj_post_rate_limit_' . md5($ip);
+  $limit = 5; // max 5 requests
+  $window = HOUR_IN_SECONDS;
+
+  $count = get_transient($transient_key);
+  if ($count === false) {
+    set_transient($transient_key, 1, $window);
+  } elseif ($count >= $limit) {
+    $transient_mail_key = 'egj_post_mail_rate_limit_' . md5($ip);
+    $bool = get_transient($transient_mail_key);
+    if (!$bool) {
+      set_transient($transient_mail_key, true, HOUR_IN_SECONDS);
+      $admin = get_userdata(1);
+      $email = $admin ? $admin->user_email : null;
+      if($email) {
+        wp_mail($email, 'API Hammering detected', "IP: $ip hat das Rate Limit überschritten.");
+      }
+    }
+
+    return new WP_Error('rate_limited', 'Too many requests. Please try again later.', array('status' => 429));
+  } else {
+    set_transient($transient_key, $count + 1, $window);
+  }
+
+  // AUTH
   // https://stackoverflow.com/questions/53126137/wordpress-rest-api-custom-endpoint-with-url-parameter
   $token1_param = egj_escape($request->get_param( 'token' ));
   $token1_db = get_option( $_SESSION['egj_room_status_token_option_name_1'] );
@@ -72,12 +99,37 @@ function egj_door_status_post_api( WP_REST_Request $request){
 }
 
 function egj_door_status_get_api( $data ) {
+  // rate limiting
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $transient_key = 'egj_get_rate_limit_' . md5($ip);
+  $limit = 400; 
+  $window = HOUR_IN_SECONDS;
+
+  $count = get_transient($transient_key);
+  if ($count === false) {
+    set_transient($transient_key, 1, $window);
+  } elseif ($count >= $limit) {
+    return new WP_Error('rate_limited', 'Too many requests. Please try again later.', array('status' => 429));
+  } else {
+    set_transient($transient_key, $count + 1, $window);
+  }
+
   $jsonData = get_option( $_SESSION['egj_room_status_option_name_1'] );
 
   $response = new WP_REST_Response($jsonData);
   $response->set_status(200);
 
   return $response;
+}
+
+function egj_door_status_permission_callback() {
+  // Authorization: Basic base64(username:application-password)
+  return is_user_logged_in();
+  // $user = wp_get_current_user();
+  // if ($user->user_login === 'benutzername') {
+  //   return true;
+  // }
+  // return false;
 }
 
 add_action('rest_api_init', function () {
@@ -92,6 +144,6 @@ add_action('rest_api_init', function () {
   register_rest_route($_SESSION['egj_room_status_namespace'] .'/' . $_SESSION['egj_door_status_version'], '/' . $_SESSION['egj_room_status_route'], array(
     'methods'  => 'POST',
     'callback' => 'egj_door_status_post_api',
-    'permission_callback' => '__return_true'
+    'permission_callback' => '__return_true' // if wanted more security egj_door_status_permission_callback
   ));
 });
