@@ -28,4 +28,6 @@ jobs:
           **/.git*/**
           **/.github*
           **/test*
+          **/test*/**
           **/homeAssistant*
+          **/homeAssistant*/**
