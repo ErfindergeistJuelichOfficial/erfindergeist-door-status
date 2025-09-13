@@ -62,10 +62,6 @@
         return;
       }
 
-      if (!erfindergeistRoomStatusHealthCheckSettings?.title && !erfindergeistRoomStatusHealthCheckSettings?.type && !erfindergeistRoomStatusHealthCheckSettings?.mapping) {
-        return;
-      }
-
       for (const currentSetting of erfindergeistRoomStatusHealthCheckSettings) {
         if (!currentSetting?.title && !currentSetting?.type && !currentSetting?.mapping) {
           continue;
