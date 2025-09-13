@@ -14,8 +14,30 @@
     $(`#${containerId}`).html(html);
   }
 
+  // https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
+  function isNumeric(str) {
+    if (typeof str != "string") return false // we only process strings!  
+    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+         !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+  }
+
   function renderBatteryHealthStateItem(title, value) {
-    let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0 ${value < 25 ? "list-group-item-danger" : ""}"> \n`
+
+    if(!isNumeric(value) && value > -1 && value < 101) {
+      return;
+    }
+
+    let gradientColor1 = "#ffffff";
+    switch(value) {
+      case value < 100:
+        gradientColor1 = "#52cc6eff";
+      case value < 50:
+        gradientColor1 = "#e7fa9bff"
+      case value < 20:
+        gradientColor1 = "#f7868bff"
+    }
+
+    let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0" style="linear-gradient(to right, ${gradientColor1} ${value}%, white ${100 - value}%)"> \n`
     html += '<div class="ms-2 me-auto">\n'
     html += `<div class="fw-bold">${title}</div>\n`
     html += `${value}%\n`;
@@ -104,10 +126,7 @@
           default:
             continue;
         }
-
       }
- 
-
     }
   }
 
