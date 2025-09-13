@@ -24,30 +24,67 @@
     return html;
   }
 
-  function renderHealthState(data) {
-    if(!$(`#${healthCheckContainerId}`).length) { 
-      return;
-    }
-
-    if (data) {
-      if (!erfindergeistRoomStatusHealthCheckMapping && typeof erfindergeistRoomStatusHealthCheckMapping !== "object") {
-        return;
-      }
-      
+  function renderNormalHealthState(data, settings) {
       let html = '<ol class="list-group">\n'
 
       html += '<li class="list-group-item d-flex justify-content-between align-items-start m-0">\n'
-      html += `<h5 class="mb-1 fw-bold">${erfindergeistRoomStatusHealthCheckTitle}</h5>\n`
+      html += `<h5 class="mb-1 fw-bold">${settings.title}</h5>\n`
       html += '</li>\n'
 
-      Object.keys(erfindergeistRoomStatusHealthCheckMapping).forEach(key => {
+      Object.keys(settings.mapping).forEach(key => {
         if(data[key]?.value) {
-          html += renderHealthItem(erfindergeistRoomStatusHealthCheckMapping[key], data[key].value)
+          html += renderHealthItem(settings.mapping[key], data[key].value)
         }
       })
      
       html += '</ol>\n';
       $(`#${healthCheckContainerId}`).html(html);
+  }
+
+  function renderHealthState(data) {
+    if(!$(`#${healthCheckContainerId}`).length) { 
+      return;
+    }
+
+    // Type erfindergeistRoomStatusHealthCheckSettings
+    // [
+    //   {
+    //     title: string;
+    //     type: "Normal" | "Battery"
+    //     mapping: {
+    //       key: string
+    //     }
+    //   }
+    // ]
+
+    if (data) {
+      if (!erfindergeistRoomStatusHealthCheckSettings && Array.isArray(erfindergeistRoomStatusHealthCheckSettings)) {
+        return;
+      }
+
+      if (!erfindergeistRoomStatusHealthCheckSettings?.title && !erfindergeistRoomStatusHealthCheckSettings?.type && !erfindergeistRoomStatusHealthCheckSettings?.mapping) {
+        return;
+      }
+
+      for (const currentSetting of erfindergeistRoomStatusHealthCheckSettings) {
+        if (!currentSetting?.title && !currentSetting?.type && !currentSetting?.mapping) {
+          continue;
+        }
+
+        switch(currentSetting.type) {
+          case "Normal": 
+            renderNormalHealthState(data, currentSetting);
+            break;
+          case "Battery":
+            renderNormalHealthState(data, currentSetting);
+            break;
+          default:
+            continue;
+        }
+
+      }
+ 
+
     }
   }
 
