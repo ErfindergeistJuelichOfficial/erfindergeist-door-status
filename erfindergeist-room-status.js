@@ -14,11 +14,38 @@
     $(`#${containerId}`).html(html);
   }
 
-  function renderHealthItem(title, value) {
+  function renderBatteryHealthStateItem(title, value) {
     let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0 ${value < 25 ? "list-group-item-danger" : ""}"> \n`
     html += '<div class="ms-2 me-auto">\n'
     html += `<div class="fw-bold">${title}</div>\n`
     html += `${value}%\n`;
+    html += '</div>\n'
+    html += '</li>\n'
+    return html;
+  }
+
+  function renderBatteryHealthState(data, settings) {
+    let html = '<ol class="list-group">\n'
+
+    html += '<li class="list-group-item d-flex justify-content-between align-items-start m-0">\n'
+    html += `<h5 class="mb-1 fw-bold">${settings.title}</h5>\n`
+    html += '</li>\n'
+
+    Object.keys(settings.mapping).forEach(key => {
+      if(data[key]?.value) {
+        html += renderBatteryHealthStateItem(settings.mapping[key], data[key].value)
+      }
+    })
+    
+    html += '</ol>\n';
+    $(`#${healthCheckContainerId}`).html(html);
+  }
+
+  function renderNormalHealthStateItem(title, value) {
+    let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0 ${value < 25 ? "list-group-item-danger" : ""}"> \n`
+    html += '<div class="ms-2 me-auto">\n'
+    html += `<div class="fw-bold">${title}</div>\n`
+    html += `${value}\n`;
     html += '</div>\n'
     html += '</li>\n'
     return html;
@@ -33,7 +60,7 @@
 
       Object.keys(settings.mapping).forEach(key => {
         if(data[key]?.value) {
-          html += renderHealthItem(settings.mapping[key], data[key].value)
+          html += renderNormalHealthStateItem(settings.mapping[key], data[key].value)
         }
       })
      
@@ -72,7 +99,7 @@
             renderNormalHealthState(data, currentSetting);
             break;
           case "Battery":
-            renderNormalHealthState(data, currentSetting);
+            renderBatteryHealthState(data, currentSetting);
             break;
           default:
             continue;
