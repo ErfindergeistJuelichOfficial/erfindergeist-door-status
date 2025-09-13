@@ -39,7 +39,7 @@
 
     
 
-    let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0" style="linear-gradient(to right, ${gradientColor1} ${value}%, white ${100 - value}%)"> \n`
+    let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0" style="background: linear-gradient(to right, ${gradientColor1} ${value}%, white ${100 - value}%)"> \n`
     html += '<div class="ms-2 me-auto">\n'
     html += `<div class="fw-bold">${title}</div>\n`
     html += `${value}%\n`;
