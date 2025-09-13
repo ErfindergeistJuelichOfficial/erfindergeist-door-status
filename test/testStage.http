@@ -6,7 +6,7 @@ GET https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v2/room-status/ H
 
 ### POST status
 # should return 200 OK
-POST https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v2/room-status?token={{$dotenv TOKEN1}}&token2={{$dotenv TOKEN2}}&token3={{$dotenv TOKEN3}} HTTP/1.1
+POST https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v2/room-status?token={{$dotenv TEST_TOKEN1}}&token2={{$dotenv TEST_TOKEN2}}&token3={{$dotenv TEST_TOKEN3}} HTTP/1.1
 Content-Type: "application/json"
 
 {
@@ -17,7 +17,7 @@ Content-Type: "application/json"
 
 ### POST status only one key
 # should return 200 Ok. look at dateTime
-POST https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v2/room-status?token={{$dotenv TOKEN1}}&token2={{$dotenv TOKEN2}}&token3={{$dotenv TOKEN3}} HTTP/1.1
+POST https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v2/room-status?token={{$dotenv TEST_TOKEN1}}&token2={{$dotenv TEST_TOKEN2}}&token3={{$dotenv TEST_TOKEN3}} HTTP/1.1
 Content-Type: "application/json"
 
 {

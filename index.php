@@ -4,7 +4,7 @@
  * Description: Room status Erfindergeist Jülich e.V.
  * Author: Lars 'vreezy' Eschweiler
  * Author URI: https://www.vreezy.de
- * Version: 3.1.0
+ * Version: 3.2.0
  * Text Domain: erfindergeist
  * Domain Path: /languages
  * Tested up to: 6.8
@@ -46,7 +46,6 @@ function egj_room_status_settings_page() {
         <div class="updated"><p><strong><?php _e('Tokens saved.', 'menu-test' ); ?></strong></p></div>
       <?php
     }
-
 
     $status = json_decode(stripslashes_deep($_POST[ $_SESSION['egj_room_status_option_name_1'] ]), true);
     if(!json_last_error()) {
@@ -96,8 +95,6 @@ function egj_room_status_settings_page() {
         <p class="submit">
           <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
         </p>
-
-       
       </form>
     </div>
   <?php

@@ -9,14 +9,14 @@ function erfindergeist_room_status_styles() {
     'erfindergeist-room-status-style',
     plugins_url( '/', __FILE__ ) . 'erfindergeist-room-status.css',
     array('bootstrap'),
-    1.2
+    2.0
   );
 
   wp_enqueue_script(
     'erfindergeist-room-status-script',
     plugins_url( '/', __FILE__ ) . 'erfindergeist-room-status.js',
     array('jquery'),
-    1.5,
+    2.0,
     true
   );
 }

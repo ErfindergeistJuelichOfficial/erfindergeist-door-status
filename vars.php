@@ -12,6 +12,5 @@
   $_SESSION['egj_room_status_token_input_name_2'] = 'egj_door_status_token_2';
   $_SESSION['egj_room_status_token_input_name_3'] = 'egj_door_status_token_3';
 
-  $_SESSION['egj_room_status_option_name_1'] = 'egj_door_status_status_1';
- 
+  $_SESSION['egj_room_status_option_name_1'] = 'egj_door_status_status_1'; 
 ?>

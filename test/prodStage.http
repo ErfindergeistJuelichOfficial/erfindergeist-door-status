@@ -1,0 +1,14 @@
+
+
+### GET status
+# @name getStatus
+GET https://erfindergeist.org/wp-json/erfindergeist/v2/room-status/ HTTP/1.1
+
+### POST status
+# lock door
+POST https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v2/room-status?token={{$dotenv PROD_TOKEN1}}&token2={{$dotenv PROD_TOKEN2}}&token3={{$dotenv PROD_TOKEN3}} HTTP/1.1
+Content-Type: "application/json"
+
+{
+  "lockWorkshopState": "locked"
+}
