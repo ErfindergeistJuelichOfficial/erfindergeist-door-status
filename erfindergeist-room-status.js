@@ -28,12 +28,12 @@
     if(!$(`#${healthCheckContainerId}`).length) { 
       return;
     }
+
     if (data) {
       if (!erfindergeistRoomStatusHealthCheckMapping && typeof erfindergeistRoomStatusHealthCheckMapping !== "object") {
         return;
       }
-
-
+      
       let html = '<ol class="list-group">\n'
 
       html += '<li class="list-group-item d-flex justify-content-between align-items-start m-0">\n'
@@ -41,7 +41,7 @@
       html += '</li>\n'
 
       Object.keys(erfindergeistRoomStatusHealthCheckMapping).forEach(key => {
-        if(data[key].value) {
+        if(data[key]?.value) {
           html += renderHealthItem(erfindergeistRoomStatusHealthCheckMapping[key], data[key].value)
         }
       })
@@ -113,7 +113,7 @@
   function render(data) {
     renderOpenState(data);
     renderHealthState(data);
-    renderGlobalBar(data);
+    // renderGlobalBar(data);
   }
 
   function getData() {
