@@ -28,18 +28,21 @@
     }
 
     let gradientColor1 = "#52cc6eff";
+    let gradientColor2 = "#baf2c7ff";
 
     if(parseInt(value) < 51) {
       gradientColor1 = "#e7fa9bff";
+      gradientColor2 = "#f1f7daff";
     }
 
     if(parseInt(value) < 20) {
       gradientColor1 = "#f7868bff";
+      gradientColor2 = "#f9d4d6ff";
     }
 
     
 
-    let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0" style="background: linear-gradient(to right, ${gradientColor1} ${value}%, white ${100 - value}%)"> \n`
+    let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0" style="background: linear-gradient(45deg, ${gradientColor1} ${value}%, ${gradientColor2} ${100 - value}%)"> \n`
     html += '<div class="ms-2 me-auto">\n'
     html += `<div class="fw-bold">${title}</div>\n`
     html += `${value}%\n`;
