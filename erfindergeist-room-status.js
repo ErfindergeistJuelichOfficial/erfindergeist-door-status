@@ -2,7 +2,6 @@
 
   const openStateContainerId = "erfindergeistRoomStatusContainer"; 
   const healthCheckContainerId = "erfindergeistRoomStatusHealthCheckContainer";
-
   const globalBarContainerId = "erfindergeist-room-status-global";
 
   function renderError() {
@@ -39,8 +38,6 @@
       gradientColor1 = "#cf6065ff";
       gradientColor2 = "#f9d4d6ff";
     }
-
-    
 
     let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0" style="background: linear-gradient(45deg, ${gradientColor1} ${value}%, ${gradientColor2} ${100 - value}%)"> \n`
     html += '<div class="ms-2 me-auto">\n'
