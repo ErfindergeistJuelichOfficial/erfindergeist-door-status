@@ -23,19 +23,21 @@
 
   function renderBatteryHealthStateItem(title, value) {
 
-    if(!isNumeric(value) && value > -1 && value < 101) {
+    if(!isNumeric(value) && parseInt(value) > -1 && parseInt(value) < 101) {
       return;
     }
 
-    let gradientColor1 = "#ffffff";
-    switch(value) {
-      case value < 100:
-        gradientColor1 = "#52cc6eff";
-      case value < 50:
-        gradientColor1 = "#e7fa9bff"
-      case value < 20:
-        gradientColor1 = "#f7868bff"
+    let gradientColor1 = "#52cc6eff";
+
+    if(parseInt(value) < 51) {
+      gradientColor1 = "#e7fa9bff";
     }
+
+    if(parseInt(value) < 20) {
+      gradientColor1 = "#f7868bff";
+    }
+
+    
 
     let html = `<li class="list-group-item d-flex justify-content-between align-items-start m-0" style="linear-gradient(to right, ${gradientColor1} ${value}%, white ${100 - value}%)"> \n`
     html += '<div class="ms-2 me-auto">\n'
