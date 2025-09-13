@@ -31,12 +31,12 @@
     let gradientColor2 = "#baf2c7ff";
 
     if(parseInt(value) < 51) {
-      gradientColor1 = "#e7fa9bff";
+      gradientColor1 = "#c1d866ff";
       gradientColor2 = "#f1f7daff";
     }
 
     if(parseInt(value) < 20) {
-      gradientColor1 = "#f7868bff";
+      gradientColor1 = "#cf6065ff";
       gradientColor2 = "#f9d4d6ff";
     }
 
