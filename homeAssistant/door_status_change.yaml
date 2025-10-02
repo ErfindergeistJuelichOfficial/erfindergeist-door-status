@@ -1,0 +1,17 @@
+alias: door_status_change
+description: ""
+triggers:
+  - trigger: state
+    entity_id:
+      - binary_sensor.shelly_blu_door_window_48e1_window
+    to: null
+conditions: []
+actions:
+  - action: rest_command.egj_room_status_post
+    response_variable: status_response
+    data:
+      payload: |
+        { 
+          "doorState": "{{ states('binary_sensor.shelly_blu_door_window_48e1_window') }}"
+        }
+mode: single

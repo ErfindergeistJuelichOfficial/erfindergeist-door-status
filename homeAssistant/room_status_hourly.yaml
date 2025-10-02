@@ -1,0 +1,41 @@
+alias: room_status_hourly
+description: ""
+triggers:
+  - trigger: time_pattern
+    hours: /1
+conditions: []
+actions:
+  - action: rest_command.egj_room_status_post
+    response_variable: status_response
+    data:
+      payload: |-
+        { 
+          "lockWorkshopState": "{{ states('lock.egj_werkstatt') }}",
+          "lockWorkshopBattery": "{{ states('sensor.egj_werkstatt_batterie') }}",
+          "lockFrontDoorBattery": "{{ states('sensor.awo_hausture_egj_batterie') }}",
+          "lockAWOBattery": "{{ states('sensor.awo5_batterie') }}",
+          "doorState": "{{ states('binary_sensor.shelly_blu_door_window_48e1_window') }}",
+          "doorIlluminance": "{{ states('sensor.shelly_blu_door_window_48e1_illuminance') }}",
+          "doorBattery": "{{ states('sensor.shelly_blu_door_window_48e1_battery') }}",
+          "sensorA5A8Humidity": "{{ states('sensor.atc_a5a8_humidity') }}",
+          "sensorA5A8Temperature": "{{ states('sensor.atc_a5a8_temperature') }}",
+          "sensorA5A8Battery": "{{ states('sensor.atc_a5a8_battery') }}",
+          "sensorA4F0Humidity": "{{ states('sensor.atc_a4f0_humidity') }}",
+          "sensorA4F0Temperature": "{{ states('sensor.atc_a4f0_temperature') }}",
+          "sensorA4F0Battery": "{{ states('sensor.atc_a4f0_battery') }}",
+          "smokeAlertState": "{{ states('binary_sensor.shellyplussmoke_a0a3b3e67fcc_smoke') }}",
+          "smokeAlertBattery": "{{ states('sensor.shellyplussmoke_a0a3b3e67fcc_battery') }}",
+          "floodAlertState": "{{ states('binary_sensor.shellyflood_48e7297d0233_flood') }}",
+          "floodAlertTemperature": "{{ states('sensor.shellyflood_48e7297d0233_temperature') }}",
+          "floodAlertBattery": "{{ states('sensor.shellyflood_48e7297d0233_battery') }}",
+          "currentMeterNetworkCurrent": "{{ states('sensor.shellypmminig3_ecda3bc6371c_current') }}",
+          "currentMeterNetworkEnergy": "{{ states('sensor.shellypmminig3_ecda3bc6371c_energy') }}",
+          "currentMeterNetworkPower": "{{ states('sensor.shellypmminig3_ecda3bc6371c_power') }}",
+          "currentMeterNetworkVoltage": "{{ states('sensor.shellypmminig3_ecda3bc6371c_voltage') }}",
+          "camPersonAlertState": "{{ states('binary_sensor.egj_person') }}",
+          "camAnimalAlertState": "{{ states('binary_sensor.egj_tier') }}",
+          "camMotionAlertState": "{{ states('binary_sensor.egj_bewegung') }}",
+          "homeassistantCoreCPU": "{{ states('sensor.home_assistant_core_cpu_percent') }}",
+          "homeassistantCoreRAM": "{{ states('sensor.home_assistant_core_memory_percent') }}"
+        }
+mode: single

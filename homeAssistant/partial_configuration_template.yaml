@@ -1,0 +1,8 @@
+  egj_room_status_get:
+    url: "https://<URL_TO_WORDPRESS>/wp-json/erfindergeist/v2/room-status"
+    method: get
+  egj_room_status_post:
+    url: "https://<URL_TO_WORDPRESS>/wp-json/erfindergeist/v2/room-status?token=<TOKEN1>&token2=<TOKEN2>&token3=<TOKEN3>"
+    method: post
+    content_type: "application/json"
+    payload: "{{ payload }}"
