@@ -148,7 +148,7 @@
         html += "Werkstatt ist geschlossen<br>";
       }
       const x = new Date(data.lockWorkshopState.dateTime)
-      x.setMinutes(x.getMinutes() - x.getTimezoneOffset() * Math.sign(x.getTimezoneOffset()))
+      // x.setMinutes(x.getMinutes() - x.getTimezoneOffset() * Math.sign(x.getTimezoneOffset()))
       html +=
         "Letzte Aktualisierung: " + x.toLocaleString();
 
