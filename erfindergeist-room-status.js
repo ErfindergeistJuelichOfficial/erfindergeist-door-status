@@ -136,11 +136,11 @@
     if(!$(`#${openStateContainerId}`).length) return;
     if (
       data &&
-      data.lockState !== undefined 
+      data.lockWorkshopState !== undefined 
     ) {
       let html = "";
 
-      if (data.lockState.value === "unlocked") {
+      if (data.lockWorkshopState.value === "unlocked") {
         html += '<p class="is-style-info">';
         html += 'Werkstatt ist offen<br>';
       } else {
@@ -148,7 +148,7 @@
         html += "Werkstatt ist geschlossen<br>";
       }
       html +=
-        "Letzte Aktualisierung: " + new Date(data.lockState.dateTime).toLocaleString();
+        "Letzte Aktualisierung: " + new Date(data.lockWorkshopState.dateTime).toLocaleString();
 
       html += '</p>';
 
