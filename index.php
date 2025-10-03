@@ -24,6 +24,11 @@ require_once 'styles.php';
 require_once 'content.php';
 
 function egj_room_status_settings_page() {
+
+  //must check that the user has the required capability
+	if ( !current_user_can( 'manage_options' ) )  {
+    wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+	}
     
   $token1_post = "";
   $token2_post = "";
