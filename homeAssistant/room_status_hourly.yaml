@@ -23,6 +23,8 @@ actions:
           "sensorA4F0Humidity": "{{ states('sensor.atc_a4f0_humidity') }}",
           "sensorA4F0Temperature": "{{ states('sensor.atc_a4f0_temperature') }}",
           "sensorA4F0Battery": "{{ states('sensor.atc_a4f0_battery') }}",
+          "plugPrusaEnergy": "{{ states('sensor.smart_wi_fi_plug_energie_2') }}",
+          "prusaState": "{{ states('sensor.prusa_core_one') }}",
           "smokeAlertState": "{{ states('binary_sensor.shellyplussmoke_a0a3b3e67fcc_smoke') }}",
           "smokeAlertBattery": "{{ states('sensor.shellyplussmoke_a0a3b3e67fcc_battery') }}",
           "floodAlertState": "{{ states('binary_sensor.shellyflood_48e7297d0233_flood') }}",
