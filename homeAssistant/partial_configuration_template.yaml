@@ -1,3 +1,4 @@
+rest_command:
   egj_room_status_get:
     url: "https://<URL_TO_WORDPRESS>/wp-json/erfindergeist/v2/room-status"
     method: get
